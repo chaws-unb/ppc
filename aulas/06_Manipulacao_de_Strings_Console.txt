@@ -1,0 +1,132 @@
+
+                     [1mManipulação de strings[0m
+
+
+[4mRepresentação[24m [4minterna[24m [4mda[24m [4mstring[0m
+
+  →  A  manipulação da string depende da representação interna da
+  mesma
+
+  → A representação como um vetor terminado em zero do C facilita
+  a implementação de algumas rotinas, como:
+
+    · Computar o tamanho da string (basta iterar caractere a car‐
+    actere e incrementar o contador até atingir o caractere nulo)
+
+    · Copiar uma string em outra (também feita através de uma it‐
+    eração  sobre  a  string.  Importante ressaltar que o destino
+    deve ter espaço suficiente para a cópia)
+
+    · Reverter uma string (o que pode ser  realizado  através  de
+    uma  cópia com o laço decrescente ou permutando os caracteres
+    da string original)
+
+  → Veja o exemplo de uma rotina de substituição de substrings na
+  função replace_x_with_y() do arquivo name.c
+
+[4mFunções[24m [4mdas[24m [4mbibliotecas[24m [4mde[24m [4mstrings[0m
+
+  → A linguagem C possui bibliotecas tanto para caracteres quanto
+  para strings
+
+  → A biblioteca ctype.h contém vários testes simples  e  manipu‐
+  lações,  sendo  verdadeiro  qualquer  valor diferente de zero e
+  falso igual a zero:
+
+    · int isalpha(int c);
+    · int isupper(int c);
+    · int islower(int c);
+    · int isdigit(int c);
+    · int ispunct(int c);
+    · int isxdigit(int c);
+    · int isprint(int c);
+    · int toupper(int c);
+    · int tolower(int c);
+
+  → A descrição de cada uma destas funções pode ser encontrada na
+  página manual
+
+  →  Na  biblioteca  string.h  estão as funções de manipulação de
+  strings:
+
+    · char * strcat(char *dst, const char *src);
+    · int strcmp(const char *s1, const char *s2);
+    · char *strcpy(char *dst, const char *src);
+    · size_t strlen(const char *s);
+    · char *strstr(const char *s1, const char *s2);
+    · char *strtok(char *s1, const char *s2);
+
+  → As páginas manuais também contém as referências  das  funções
+  acima
+
+  →  Em  C++,  a  classe  string  tem os seguintes métodos, sendo
+  necessário incluir o cabeçalho ’string’ para o seu uso:
+
+    · size()
+    · empty()
+    · c_str()
+    · operator[](size_type i)
+    · append(s)
+    · erase(n, m)
+    · insert(size_type n, const string& s)
+    · find(s)
+    · rfind(s)
+    · first()
+    · last()
+
+  → Os operadores ’+’ e ’=’ foram sobrescritos para  concatenação
+  e comparação de strings
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

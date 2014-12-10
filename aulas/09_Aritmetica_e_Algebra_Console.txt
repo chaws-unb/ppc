@@ -1,0 +1,330 @@
+
+                      [1mAritmética e Álgebra[0m
+
+
+[4mMatemática[24m [4me[24m [4mProgramação[0m
+
+  →  A relação entre a matemática e a programação já está bem es‐
+  tabelecida
+
+  → Os primeiros computadores foram construídos por  matemáticos,
+  para acelerar seus cálculos
+
+  →  Pascal  construiu,  em  1645, uma máquina de adição mecânica
+  baseada em engrenagens
+
+  → Pioneiros da computação como Turing  e  von  Newmann  tiveram
+  grandes  resultados  na matemática, tão ou mais expressivos que
+  suas contribuições na computação
+
+[4mAritmética[24m [4mde[24m [4mmáquina[0m
+
+  → Toda linguagem de programação possui um tipo  inteiro  básico
+  com suporte às quatro operações elementares: adição, subtração,
+  multiplicação e divisão
+
+  → Como estas operações geralmente mapeadas em hardware  (com  a
+  única  exceção  comum  sendo a divisão), o intervalo de números
+  representáveis em uma variável inteira depende  da  arquitetura
+  onde o código rodará
+
+  →  Numa arquitetura de 32‐bits, o intervalo será de + ou ‐ 2 **
+  31, isto é, 2.147.483.648
+
+  → Ou seja, neste cenário é seguro  contar  até  um  bilhão  com
+  variáveis inteiras
+
+  → Em arquiteturas de 64‐bits, o intervalo sobe para + ou ‐ 2 **
+  63, o que dá + ou ‐ 9.223.372.036.854.775.808, isto é,  números
+  com até 19 dígitos (acima dos trilhões)
+
+  → Estas representações de 4 ou 8 bytes por inteiro pode ser in‐
+  eficiente, no quesito espaço em memória,  quando  é  necessário
+  armazenar  vários números com ordem significativamente menor do
+  que os limites máximos (por exemplo, 256 tons de cinza em  ima‐
+  gens)
+
+  →  Nestes  casos,  é  útil utilizar os tipos short ou char, que
+  ocupam menos memória e,  consequentemente,  tem  intervalos  de
+  valores possíveis reduzidos
+
+  →  Os  números  positivos  são representados em memória por sua
+  forma binária
+
+  → Os número negativos são representados em complementos de 2, o
+  que  permite  realizar  as  operações em hardware de forma mais
+  eficiente
+
+  → Já a representação de números em ponto flutuante é mais  com‐
+  plexa,  envolvendo a mantissa e o expoente, em relação a base 2
+  (a x 2 ^ c)
+
+  → Como os bits são divididos entre a e c, os tipos float e dou‐
+  ble não são adequados para grandes contagens
+
+[4mBibliotecas[24m [4mpara[24m [4mInteiros[0m
+
+  → Em C, a biblioteca stdlib.h oferece funções para o cálculo do
+  valor absoluto e para geração de números randômicos
+
+  → A  biblioteca  math.h  contém  arredondamentos,  trucamentos,
+  raizes e exponenciais
+
+[4mInteiros[24m [4mde[24m [4mAlta[24m [4mPrecisão[0m
+
+  → Para representar inteiros de alta precisão (com grande número
+  de dígitos), é necessário armazenar os dígitos sequencialmente
+
+  → Uma primeira forma é o array de dígitos, que é a mais simples
+  das  representações.  O primeiro elemento do array representa o
+  dígito menos significativo. Manter o número de dígitos pode au‐
+  mentar a eficiência de algumas operações
+
+  →  Outra forma é a lista encadeada de dígitos. Embora menos co‐
+  mum, pode ser  necessária  em  caso  de  número  excessivamente
+  grandes,  e não seja possível encontrar espaço em memória alin‐
+  hado o suficiente para a representação em arrays
+
+    · Código: bignum.c (Definição da estrutura bignum)
+
+  → Embora o código esteja em base 10,  bases  maiores  são  mais
+  eficientes em termos de uso de memória
+
+  →  Este código também utiliza um limite subjacente, e não veri‐
+  fica a possibilidade de overflow
+
+[4mAritmética[24m [4mde[24m [4mAlta[24m [4mPrecisão[0m
+
+  → A adição é feita da esquerda para a direita, do dígito  menos
+  significativo  para  o  mais  significativo, somando ao próximo
+  dígito o valor do carry (vai um) quando necessário
+
+  → A soma com números negativos deve ser tratada  como  um  caso
+  especial, através de uma função de subtração quando as parcelas
+  tem sinais distintos
+
+    · Código: bignum.c (add_bignum() e zero_justify())
+
+  → Como a substituição envolve o empréstimo, é necessário que  a
+  primeira parcela seja a de maior módulo
+
+    · Código: bignum.c (subtract_bignum())
+
+  →  A  comparação de dois números deve ser feita a partir do dos
+  dígitos mais significativos, levando primeiramente  em  consid‐
+  eração  os  sinais  dos  números:  se  ambos forem negativos, o
+  número de maior módulo é o menor dos dois
+
+    · Código: bignum.c (compare_bignum())
+
+  → Embora a multiplicação possa ser interpretada como somas  su‐
+  cessivas,  a implementação sob esta ótica é potencialmente ine‐
+  ficiente
+
+  → O algoritmo utilizado na escola pode ser utilizado como  base
+  para a implementação da multiplicação
+
+    · Código: bignum.c (multiply_bignum())
+
+  →  O deslocamento de um bit para a direita equivale a multipli‐
+  cação por 10
+
+    · Código: bignum.c (digit_shift())
+
+  → Também a divisão pode ser implementada de acordo com o  algo‐
+  ritmo aprendido na escola
+
+    · Código: bignum.c (divide_shift())
+
+  →  A rotina da divisão descarta o resto, que pode ser computado
+  através da expressão a ‐ b*(a / b), ou utilizando  técnicas  de
+  Teoria dos Números, que serão vistas adiante
+
+  → Quando um ou ambos termos são negativos, os sinais do resto e
+  do quociente não são definidos claramente, e  podem  variar  de
+  acordo com a implementação utilizada
+
+  → A exponenciação também é vista como a multiplicação repetida.
+  Contudo, a implementação deve levar em conta de que a^n = (a  ^
+  n/2)  *  (a ^ n/2) * (a ^ n % 2), de modo que serão necessárias
+  cerca de log n operações
+
+[4mBases[24m [4mNuméricas[24m [4me[24m [4mConversões[0m
+
+  → A representação de um número depende da base utilizada, sendo
+  as  mais  comuns  a  binária  (base 2), octal (base 8), decimal
+  (base 10) e hexadecimal (base 16)
+
+  → A base binária utiliza dois dígitos: 0 e 1, e é a  base  uti‐
+  lizada nos computadores, uma vez que mapeia naturalmente os es‐
+  tados ligado/desligado
+
+  → A base octal fornece uma maneira rápida e concisa  de  repre‐
+  sentar  números binários, em grupos de três em três. Os dígitos
+  utilizados variam de 0 a 7
+
+  → A base decimal é a mais utilizada no cotidiano, e foi adotada
+  historicamente,  sendo  preferida entre bases de 20 ou 60 dígi‐
+  tos, utilizados por povos antigos  em  diferentes  momentos  da
+  história
+
+  →  A  base  hexadecimal utiliza os dez dígitos decimais mais as
+  seis primeiras letras do alfabeto. É uma forma ainda mais  com‐
+  pacta  de representação de bits, representando um byte com ape‐
+  nas dois símbolos
+
+  → É possível utilizar outras bases, uma vez providos os  símbo‐
+  los para todos os dígitos. Por exemplo, utilizando os dez dígi‐
+  tos e as 26 letras do alfabeto é possível utilizar a base 36
+
+  → Em certificados digitais, é utilizada a base 64, que  utiliza
+  dígitos,  letras  maiúsculas e minúsculas, e os símbolos + e /,
+  além do símbolo = ou == para padding
+
+  → Há dois tipos de algoritmos para conversão entre bases
+
+  → O primeiro age da esquerda para a direita,  determinando,  em
+  cada  etapa, o dígito mais significativo, pois (d_l + 1)b^k > x
+  >= d_lb^k, onde 1 <= d_l <= b ‐ 1
+
+  → Neste algoritmo, é preciso ser capaz de comparar a  magnitude
+  de  números de diferentes bases, e equivale ao algoritmo da di‐
+  visão
+
+  → O outro algoritmo consiste em determinar o dígito menos  sig‐
+  nificativo  em  cada  etapa, utilizando os algoritmos de resto.
+  Este algoritmo é mais apropriado  para  trabalhar  com  grandes
+  números
+
+    · Código: bignum.c (int_to_bignum())
+
+[4mNúmeros[24m [4mreais[0m
+
+  → O tratamento de números reais, em computador, é limitado pelo
+  fato de que o ponto flutuante tem precisão limitada,  de  modos
+  que os números não são os reais de fato
+
+  →  Na  matemática,  a continuidade dos reais garante que sempre
+  existe um número c entre a e b, o  que  não  é  necessariamente
+  verdadeiro nos computadores
+
+  →  Muitos  algoritmos são baseados no cálculo exato, e os erros
+  de precisão do computador podem gerar resultados errados
+
+  → Por exemplo, a associatividade da adição (a + b) + c = a + (b
+  + c) não é sempre verdadeira devido a erros de arredondamento
+
+  →  Os outros conjuntos numéricos também são importantes na com‐
+  putação, como os números inteiros, já citados
+
+  → Os números racionais são formados por quocientes de  inteiros
+  (com  denominador  não nulo), e contém os inteiros como subcon‐
+  junto. Geralmente são entendido como as frações
+
+  → Os números irracionais são números que não podem  ser  repre‐
+  sentados  como frações, como o pi, o e e raiz de dois. A repre‐
+  sentação em computador destes números só  pode  ser  aproximada
+  até uma determinada ordem, via séries de Taylor
+
+  →  A  representação interna dos números reais depende de compi‐
+  lador para compilador, de linguagem a linguagem, e de  computa‐
+  dor para computador
+
+  →   Há  uma  padrão  IEEE para tal representação, que vem sendo
+  adotada por cada vez mais fabricantes, mas ainda há muitas out‐
+  ras soluções no mercado
+
+  →  A  representação  é baseada na notação científica ax2^c, com
+  uma mantissa e um expoente c
+
+  → Se os expoentes dos números a serem operados forem muito dis‐
+  tintos,  é  possível  que surjam erros de underflow e overflow,
+  pois não haverá espaço suficiente na mantissa para  acomodar  a
+  resposta
+
+  →  Estes  problemas são ainda mais evidentes quando se trata de
+  igualdades: sujeiras na mantissa podem fazer com que expressões
+  claramente iguais sejam interpretadas como distintas
+
+    · Código: bug.c
+
+  →  A  comparação  entre números reais deve ser feita utilizando
+  uma margem de erro epsilon aceitável
+
+  → Truncar um número significa descartar a parte real, resultan‐
+  do em um inteiro. A função floor() da biblioteca math.h realiza
+  o truncamento
+
+  → Arredondar significar aproximar até uma certa casa, de acordo
+  com  as regras de arredondamento. Para arredondar X até k dígi‐
+  tos,  utilize  a  expressão  round(X,  k)   =   floor(10^kX   +
+  (1/2))/10^k
+
+  →  A  formatação de output das linguagens de programação variam
+  no que diz respeito ao arredondamento ou truncamento dos resul‐
+  tados
+
+[4mFrações[0m
+
+  →  A  melhor representação de uma fração exata x/y é através de
+  um par ordenado (x, y), onde x é o numerador e y o denominador
+
+  → As operações básicas com frações são facilmente implementadas
+  em computador, com c = (x1, y1) e d = (x2, y2)
+
+  →  A  adição depende de um múltiplo comum dos denominadores, de
+  modo que c + d = (x1y2 + x2y1, y1y2)
+
+  → A subtração é uma adição: c ‐ d = c + (‐d)
+
+  → A multiplicação é a soma repetida, e no  caso  de  frações  é
+  simplemente cd = (x1x2, y1y2)
+
+  →  A  divisão  é a multiplicação pelo recíproco, isto é c / d =
+  (x1y2, x2y1)
+
+  → Para evitar  erros  de  overflow,  é  importante  reduzir  as
+  frações resultantes
+
+  → Isto é feito através da divisão do numerador e do denominador
+  pelo MDC entre eles
+
+  → Existem algoritmos eficientes para computar o  gcd  entre  os
+  números, e serão apresentados adiante
+
+[4mRepresentação[24m [4mdecimal[0m
+
+  → Consiste em um caso especial dos números racionais
+
+  →  É  necessário encontrar a fração geratriz do número decimal,
+  isto é, a fração cuja divisão geral tal número
+
+  → Por exemplo, 3,1415 = (3/1) + (1415/10000) = 6283/20000
+
+  → Caso  o  número  seja  uma  dízima  periódica,  é  necessário
+  primeiramente identificar o período R e seu tamamho l
+
+  →  Em  seguida, basta observar que 10^l(a/b) ‐ (a/b) = R, o que
+  nos dá (a/b) = R/(10^l ‐ 1)
+
+  → Por exemplo, (a/b) = 0.0123123 tem R = 12.3 e l =  3,  o  que
+  nos dá (a/b) = 123/9990
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

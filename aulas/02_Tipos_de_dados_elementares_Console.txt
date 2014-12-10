@@ -1,0 +1,66 @@
+
+                   [1mTipos de dados elementares[0m
+
+
+[4mImportância[24m [4mdos[24m [4mtipos[24m [4mde[24m [4mdados[24m [4melementares[0m
+
+  → Tipos de dados elementares são mais simples e menos propensos
+  a  erros  dos  que  estruturas  complexas  (listas  encadeadas,
+  árvores, etc)
+
+  →  Manter os códigos o mais simples possível é sinal de maturi‐
+  dade profissional
+
+  → Estruturas complexas são  importantes,  mas  devem  ser  uti‐
+  lizadas  quando  forem a melhor solução para o problemas, e não
+  em todas as situações
+
+[4mArrays[0m
+
+  → São estruturas simples, presentes em quase todas  as  lingua‐
+  gens
+
+  →  Permite  acesso  aos elementos pela posição, e não pelo con‐
+  teúdo
+
+  → O uso de sentinelas (um sentinela é um valor específico,  de‐
+  terminado pelo programador, que permite verificar os limites do
+  vetor) simplifica o trabalho com vetores em alguns casos
+
+    · Exemplo: sentinel.c
+
+  → Vetores multidimensionais podem ser utilizados para represen‐
+  tar  dados  homogêneos como, por exemplo, pontos no plano bidi‐
+  mensional
+
+  → Para dados heterogêneos, o ideal é montar um  array  de  reg‐
+  istros (estruturas ou uniões) que representem estes dados
+
+  →  A  escolha entre as representações homogêneas e heterogêneas
+  depende da situação: um ponto no plano também pode ser associa‐
+  do ao uma estrutura com dois campos (x e y)
+
+  → Em geral, a representação heterogênea tem melhor leitura, mas
+  a homogênea permite acesso facilitado em laços
+
+[4mClassificação[24m [4mdos[24m [4mproblemas[24m [4mna[24m [4mUVA[0m
+
+  → Cada problema recebe três  classificações  para  fornecer  ao
+  leitor uma noção sobre sua dificuldade
+
+  →  Primeiro é determinada uma nota (A, B ou C) para o problema,
+  onde problemas A são teoricamente mais fáceis do que os proble‐
+  mas B
+
+  →  Em seguida, é indicada a frequência de sucesso na solução do
+  problema em relação aos usuários do UVA. Os  valores  possíveis
+  são alta, média e baixa
+
+  →  Por  fim,  é dado uma classificação subjetiva, de 1 a 4, que
+  indica o nível acadêmico necessário para a solução,  sendo  que
+  quanto maior o número mais sofisticado é o problema
+
+
+
+
+

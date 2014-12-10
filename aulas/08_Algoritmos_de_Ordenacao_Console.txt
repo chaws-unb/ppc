@@ -1,0 +1,132 @@
+
+                     [1mAlgoritmos de Ordenação[0m
+
+
+[4mSobre[24m [4mos[24m [4malgoritmos[24m [4mde[24m [4mordenação[0m
+
+  → Existem diversos algoritmos de ordenação
+
+  →  O estudo destes algoritmos é importante devido as ideias que
+  cada um apresenta
+
+  → Cada algoritmo tem suas particularidades, e  apresentam  pro‐
+  priedades importantes que devem ser identificadas e estudadas
+
+[4mOrdenação[24m [4mpor[24m [4mseleção[0m
+
+  →  Este algoritmo separa o vetor em duas partes: a ordenada e a
+  não ordenada
+
+  → Cada iteração determina o menor elemento da região não  orde‐
+  nada, e o move para o fim da região ordenada
+
+  → O número de comparações é alto, mas o número de trocas de el‐
+  ementos é baixo (n ‐ 1)
+
+  → A ordem de complexidadeé O(n^2)
+    Código: sorting.c (selection_sort())
+
+  → Este é um algoritmo estável (isto é, mantém as posições rela‐
+  tivas  caso  exista dois elementos iguais segundo o critério de
+  comparação)
+
+[4mOrdenação[24m [4mpor[24m [4minserção[0m
+
+  → Este algoritmo também separa o vetor em duas regiões: ordena‐
+  da e não ordenada
+
+  →  Em cada iteração, o próximo elemento da parte não ordenada é
+  inserido na posição adequada da parte ordenada
+
+  → A proposta do algoritmo é minimizar o número de trocas  entre
+  elementos
+
+  → É bastante eficiente quando o vetor está parcialmente ordena‐
+  do
+    · Código: sorting.c (insertion_sorting.c)
+
+  → Este algoritmo também é estável
+
+[4mOrdenação[24m [4mrápida[24m [4m(quicksort)[0m
+
+  → O algoritmo reduz o problema de ordenar um vetor  em  ordenar
+  dois vetores menores, a partir de uma partição
+
+  → A partição separa os elementos do vetor em dois conjuntos: os
+  menores ou iguais a um valor pivô, e os elementos que  são  es‐
+  tritamente maiores
+
+  → Como os elementos dos vetores não precisam ser movidos para o
+  outro conjunto após a partição, os subvetores resultantes podem
+  ser ordenados independentemente
+
+  →  A  implementação  fica mais simples se mantidos os registros
+  dos índices do primeiro e do último elemento do vetor
+    · Código: sorting.c (quicksort.c)
+
+  → Este algoritmo não é estável
+
+[4mExemplo[24m [4mde[24m [4mordenação:[24m [4mRating[24m [4mthe[24m [4mField[0m
+
+  → pág. 85 do livro texto
+
+    · Código: polly.c
+
+  → Observe a função de comparação implementada e seu uso em con‐
+  junto com o qsort() da stdlib.h
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

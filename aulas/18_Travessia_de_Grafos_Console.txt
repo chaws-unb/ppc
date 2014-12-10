@@ -1,0 +1,198 @@
+
+                       [1mTravessia de Grafos[0m
+
+
+[4mTipos[24m [4mde[24m [4mtravessia[0m
+
+  → A operação mais básica em grafos é a travessia, que consistem
+  em visitar todos os vértices e todas  arestas  do  grafos,  uma
+  única vez cada
+
+  →  A  travessia  não  define  nenhuma ordem pré‐estabelecida de
+  visita, de modo que há, em cada grafo n! travessias  possíveis,
+  onde n é a soma do número de vértices com o número de arestas
+
+  →  As travessias elementares são a travessia por extensão (BFS,
+  breadth‐first search) e  a  travessia  por  profundidade  (DFS,
+  depth‐first search)
+
+  →  Ambas  travessias utilizam a mesma ideia fundamental: marcar
+  os vértices já visitados para que os mesmos não sejam visitados
+  mais de uma vez, além de possibilitar a conclusão da travessia
+
+[4mTravessia[24m [4mpor[24m [4mextensão[0m
+
+  →  É  a  mais  apropriada  nos casos onde a ordem de visita dos
+  vértices não importa e se o objetivo  é  determinar  o  caminho
+  mais curtos em grafos não ponderados
+
+  →  Para  a  implementação,  é necessário manter um registro dos
+  vértices já visitados
+
+  → Esta tarefa pode ser dividida em duas  etapas:  descobrir  um
+  vértice,  que  o  acontece  quando o algoritmo atinge o vértice
+  pela primeira vez, e processar um vértice,  que  significa  re‐
+  alizar a travessia de todos os vértices adjacentes
+
+  →  Este registro pode ser feito através de um tipo enumerado ou
+  dois vetores de boolenas
+
+    · Código: dfs‐bfs.c, funções bfs() e initialize_search()
+
+    · Código: bfsteste.cpp
+
+  → A travessia pode ser customizada a partir das  implementações
+  das funções process_vertex(), process_edge() e valid_edge()
+
+  →  O vetor parent do algoritmo bfs gera informações sobre a es‐
+  trutura de parentesco dos vértices, que pode ser utilizada para
+  se determinar o menor caminho da raiz até o vértice desejado
+
+  → A raiz será o vértice onde terá início o algoritmo
+
+  → O vértice v que leva a descoberta de um novo vértice w será o
+  pai dele
+
+  → Se, a partir do vértice deseja, for seguidos  os  pais,  será
+  montado o caminho mais curto da raiz ao vértice
+
+    · Código: dfs‐bfs.c, função find_path()
+
+    · Código: bfsteste2.cpp
+
+  →  O  caminho mais curto gerado pelo BFS só é válido se o ponto
+  de partida for a raiz da travessia
+
+  → Este caminho só é o mais curto em grafos não poderados
+
+[4mTravessia[24m [4mpor[24m [4mprofundidade[0m
+
+  → A travessia por profundidade guarda semelhanças com  o  back‐
+  tracking em dois pontos: ambos avançam enquanto for possível, e
+  recuam uma etapa quando não; são mais facilmente  implementados
+  com recursão
+
+  →  Ela  pode ser implementada também como uma travessia por ex‐
+  tensão que utiliza uma pilha ao invés de uma fila
+
+    · Código: dfs‐bfs.c, função dfs()
+
+    · Código: dfsteste.cpp
+
+  → As travessias in‐ordem, pré‐ordem e pós‐ordem das árvores  de
+  busca binária são exemplos de travessias por profundidade
+
+[4mEncontrando[24m [4mciclos[0m
+
+  → A travessia em profundidade em grafos não direcionados parti‐
+  ciona as arestas em dois grupos: arestas de  árvore  e  arestas
+  reversas
+
+  →  As  arestas  de  árvore  são  as arestas que descobrem novos
+  vértices durante a travessia
+
+  → Arestas reversas (back edges) são aquelas que apontam de vol‐
+  ta aos ancestrais do nó
+
+  →  Arestas  reversas  permitem a detecção de ciclos em um grafo
+  não direcionados: se não houver arestas reversas, o  grafo  não
+  tem  ciclos; se houver uma aresta reversa (x, y) onde y não é o
+  pai de x, então há um ciclo de y até x
+
+    · Código: cycle.cpp
+
+[4mComponentes[24m [4mconectados[0m
+
+  → Um componente conectado de um grafo não direcionado  é  um  o
+  maior  conjunto  possível  de  vértices  tal  que há um caminho
+  possível entre todos os pares de vértices
+
+  → O grafo pode ser representado por  uma  série  de  peças  de‐
+  sconectadas, onde cada peça é um componente conectado
+
+  → Problemas complexos podem ser reduzidos ao problema de se de‐
+  terminar o número de componentes conectados, como se há solução
+  para  uma  determinada configuração do cubo Rubik ou do jogo de
+  15 peças com um espaço livre
+
+  → Um componente conectado pode ser descoberto  através  de  uma
+  travessia  por  extensão  ou por profundidade: como a ordem não
+  importa, todos os vértices encontrados são partes de  um  mesmo
+  componente conectado
+
+  →  Basta  começar  do primeiro vertice, determinar o componente
+  conectado, e passar para o próximo  vértice  não  encontrado  e
+  iniciar  nova  travessia, até que todos os vértices tenham sido
+  encontrados
+
+    · Código: components.cpp
+
+[4mOrdenação[24m [4mTopológica[0m
+
+  → A ordenação topológica é uma operação fundamental  em  grafos
+  direcionados acíclicos (DAGs, em inglês)
+
+  → Ela constrói uma ordenação dos vértices de tal modo que todas
+  as arestas direcionadas seguem da esquerda para a direita
+
+  → Ela fornece um modo de processar cada vértice antes de  qual‐
+  quer um de seus sucessores
+
+  →  Ela pode ser implementada através de uma variação da traves‐
+  sia por profundidade, ou através de  um  algoritmo  baseado  na
+  análise do número de arestas que chegam ao vértice
+
+  →  Se  nenhuma aresta chega ao vértice, ele tem grau de chegada
+  igual a zero, e pode ser colocado na primeira posição da  orde‐
+  nação topológica
+
+  →  A  "remoção"  das arestas de chegada cria novos vértices com
+  grau de chegada iguais a zero, permitindo que o  processo  con‐
+  tinue até que todos os vértices tenham sido posicionados
+
+    · Código: topsort.c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

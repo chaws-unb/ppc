@@ -1,0 +1,198 @@
+
+                [1mAritmética Modular e Congruências[0m
+
+
+[4mAritmética[24m [4mModular[0m
+
+  →  A  aritmética  modular,  ao  contrário da aritmética conven‐
+  cional, não opera  em  números  inteiros,  mas  apenas  com  os
+  possíveis restos da divisão por um inteiro fixo n
+
+  →  Este  n  é  denominado  módulo,  e os restos são denominados
+  resíduos
+
+  → A notação é r (mod n)
+
+  → Todas as operações básicas da aritmética convencional tem  um
+  paralelo na aritmética modular
+
+  →  A  adição  (x  + y) mod n é dada por (x (mod n) + y (mod n))
+  (mod n).  Por exemplo 7 (mod 6) + 8 (mod 6) = 15 (mod  6)  =  3
+  (mod 6)
+
+  →  A  exponenciação é a multiplicação repetida, de modo que x^y
+  (mod n) = (x (mod n))^y (mod n).  Por exemplo 7^8 (mod 6) =  (1
+  (mod 6))^8 = 1 (mod 6)
+
+  → Por fim, a divisão é um caso consideravelmente mais complica‐
+  do e será discutida mais adiante
+
+[4mAplicações[24m [4mda[24m [4mAritmética[24m [4mModular[0m
+
+  → Encontrar o  último  dígito:  basta  computar  o  resíduo  da
+  operação  módulo  10.   Por  exemplo, qual é o último dígito de
+  2^100? Temos
+    · 2^3 (mod 10) = 8
+    · 2^6 (mod 10) = 8 x 8 (mod 10) = 4
+    · 2^12 (mod 10) = 4 x 4 (mod 10) = 6
+    · 2^24 (mod 10) = 6 x 6 (mod 10) = 6
+    · 2^48 (mod 10) = 6 x 6 (mod 10) = 6
+    · 2^96 (mod 10) = 6 x 6 (mod 10) = 6
+    · 2^100 (mod 10) = 2^96 x 2^3 x 2^1 (mod 10) = 6
+
+  → Algoritmo de cifragem RSA: o algoritmo consiste em elevar uma
+  mensagem,  codificada  como  um  inteiro m, a uma potência k (a
+  chave pública), e obter o resíduo módulo n. Ou seja, para  com‐
+  putar  c = m^k (mod n) de forma eficiente é necessário utilizar
+  as técnicas mostradas anteriormente. A chave privada é  um  in‐
+  teiro p tal que m = c^p (mod n)
+
+  →  Cálculos  de  calendário: determinar qual o dia da semana de
+  uma determinada data ou o número de segundos da hora, uma certa
+  quantidade  de tempo a partir de agora, são todas aplicações de
+  aritmética modular
+
+[4mCongruências[0m
+
+  → Congruências são uma notação alternativa para  representar  a
+  aritmética modular
+
+  →  Dizemos que a é congruente a b módulo m se m é um divisor de
+  (a ‐ b). A notação é a == b (mod m) (A notação é um símbolo  de
+  equivalência:  os  dois  iguais  aqui  utilizados são devidos a
+  limitação deste formato de arquivo)
+
+  → Pela definição, se a (mod m) é b, então a == b (mod m)
+
+  → Apesar de ser apenas uma notação, ela traz consigo a ideia de
+  classes de números que são congruentes a um mesmo resíduo
+
+  →  Por  exemplo,  quais  inteiros x satisfazem a equação x == 3
+  (mod 9)?
+
+  → Embora a equação anterior não seja  muito  complicada,  vari‐
+  antes  como 2x == 3 (mod 9) ou 2x == 3 (mod 4) são deveras mais
+  complicadas, e serão tratadas mais adiante
+
+  → Os principais problemas que envolvem  congruências  são:  re‐
+  alizar  aritmética  modular  e  resolução  de  equações de con‐
+  gruência
+
+[4mOperações[24m [4me[24m [4mCongruências[0m
+
+  → Adição e subtração: se a == b(mod n) e c == d(mod n), então a
+  + c == b + d (mod n)
+
+  →  Multiplicação:  Valem  duas formas ‐ se a == b(mod n), ad ==
+  bd(mod n) (por multiplicação repetida), e se  c  ==  d(mod  n),
+  então ac == bd(mod n)
+
+  →  Divisão:  o maior cuidado a ser tomado é que, diferentemente
+  da aritmética convencional,  não  é  possível  cancelar  termos
+  iguais em congruências: 6x2 == 6x1 (mod 3), mas 2 !== 1(mod 3)
+
+  →  Este  problema pode ser entendido se considerarmos que a di‐
+  visão, de fato, consiste na multiplicação pelo inverso, de modo
+  que a/b é, na verdade, ab^‐1
+
+  →  Para  determinar  o inverso de b, devemos encontrar b^‐1 tal
+  que bb^‐1 == 1(mod n)
+
+  → Nem sempre este inverso existe: veja a equação 2x ==  1  (mod
+  4)
+
+  →  Contudo, pode‐se simplificar a congruência ad == bd (mod dn)
+  para a == b (mod n)
+
+[4mResolvendo[24m [4mCongruências[24m [4mLineares[0m
+
+  → Uma congruência linear é uma equação da forma ax == b(mod n)
+
+  → Resolver tal equação significa encontrar todos os valores  de
+  x que a satisfazem
+
+  → Nem toda congruência linear tem solução
+
+  →  A congruência ax == 1(mod n) tem solução se, e somente se, o
+  módulo e o múltiplicador  são  relativamente  primos,  isto  é,
+  MDC(a, n) == 1
+
+  →  O  algoritmo  de  Euclides pode ser utilizado para encontrar
+  este inverso a partir da solução de ax’ + ny’ = MDC(a, n) = 1
+
+  → Como ax == 1(mod n) implica em ax == ax’ + ny’(mod n)  e  ny’
+  == 0(mod n), o inverso é o x’ do algoritmo de Euclides
+
+  →  Em  geral,  há  três casos a serem tratados nas congruências
+  lineares
+
+  → O primeiro é MDC(a,b,n) > 1. Todos os termos podem ser divid‐
+  ios  por estes MDC e obter a congruência equivalente. Isto dá a
+  solução única no novo módulo, ou MDC(a,b,cn) soluções módulo n
+
+  → No segundo caso, MDC(a, n) não divide b. Esta equação não tem
+  solução
+
+  →  No  terceiro  caso,  MDC(a,  n) = 1. A uma solução módulo n.
+  Aqui, x = a^‐1b funciona, e a^‐1 pode ser encontrado pelo algo‐
+  ritmos de Euclides
+
+  →  O Teorema Chinês do Resto é uma ferramenta para a solução de
+  sistemas de congruências lineares com módulos distintos.  Se  x
+  == a_1 (mod m_1) e x == a_2 (mod m_2), então x é unicamente de‐
+  terminado módulo m_1m_2, se m_1 e m_2 são co‐primos
+
+  → Para determinar  este  x,  e  assim  resolver  as  duas  con‐
+  gruências,  começamos  determinando  as  congruências m_2b_1 ==
+  1(mod m_1) e m1b_2 == 1(mod m_2) para encontrar b_1 e b_2
+
+  → Depois, basta ver que x = a_1b_1m_2 + a_2b_2m1  é  a  solução
+  desejada
+
+  →  Este  teorema pode ser extendido para sistemas maiores, onde
+  as equações, duas a duas, tem módulos co‐primos
+
+[4mEquações[24m [4mDiofantinas[0m
+
+  → Equações Diofantinas são aquelas cujas variáveis são  restri‐
+  tas aos números inteiros (por exemplo, o Último Teorema de Fer‐
+  mat)
+
+  → As mais comuns e frequêntes são as equações lineares da forma
+  ax ‐ ny = b, onde a,b,n são constantes e x, y são variáveis in‐
+  teiras
+
+  → Tais equações são equivalentes à congruência ax == b(mod  n),
+  e podem ser resolvidas com as técnicas da seção anterior
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

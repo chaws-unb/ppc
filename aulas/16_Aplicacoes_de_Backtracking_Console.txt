@@ -1,0 +1,132 @@
+
+                   [1mAplicações de Backtracking[0m
+
+
+[4mPermutações[0m
+
+  → A listagem de todas as n! permutações de n elementos pode ser
+  feita através do uso do backtracking
+
+  → O cuidado a ser tomado é que os candidatos possíveis, em cada
+  passo do algoritmo, dependem do estado da solução a
+
+  → Em notação de backtracking, S_k = {1, 2, ..., n} ‐ a
+
+  → a será uma solução se k == n
+
+    · Código: permutations.c
+
+→  Observe  que  as permutações são listadas em ordem lexográfica
+(isto é, em ordem ascendente)
+
+[4mO[24m [4mproblema[24m [4mdas[24m [4moito[24m [4mrainhas[0m
+
+  → O problema consiste em posicionar 8 rainhas em  um  tabuleiro
+  de xadrez, de modo que nenhuma delas ameaçe as outras
+
+  →  O problema pode ser extendido para n rainhas em um tabuleiro
+  n x n
+
+  → O caso n = 2 não tem solução, assim como o  caso  n  =  3.  O
+  primeiro valor de n que surgem soluções é 4
+
+  →  A  implementação  do  backtracking  exige a representação da
+  solução como um vetor, de maneira precisa e eficiente
+
+  → Um vetor com n^2, onde verdadeiro ou falso indicam a presença
+  de uma rainha em uma determinada casa não é muito concisa, pois
+  apenas n serão verdadeiro numa solução
+
+  → Além disso, são 2^64 ~= 1.84 x 10^19 vetores verdadeiro/falso
+  em um tabuleiro 8 x 8, um número deveras grande, tornam imprat‐
+  icável a verificação de todas (ou de grande parte)
+
+  → Por outro lado, se a é um vetor cuja entrada a_i é um  número
+  entre  1  e  n^2  que  representa  as  coordenadas das rainhas,
+  haverão 64^8 = 2.81 x 10^14 soluções  possíveis.  Embora  sejam
+  menos soluções do que a abordagem anterior, ainda assim estamos
+  muito acima da ordem de um milhão (10^6)
+
+  → Para tornar o backtracking  possível,  é  preciso  "podar"  a
+  maioria destas soluções antes mesmo de construí‐las
+
+[4m"Podando"[24m [4ma[24m [4mbusca[0m
+
+  →  A explosão combinatório implica que o espaço de busca cresce
+  exponencialmente a medida que n  cresce.  Isto  torna  inviável
+  problemas mesmo com um valor pequeno para n
+
+  → Para tornar o backtracking viável, é preciso "podar" o espaço
+  de busca, terminando imediatamente  qualquer  busca  assim  que
+  fique claro que ela não poderá resultar em uma solução
+
+  →  O  termo  "podar" vem da analogia das chamadas recursivas do
+  backtracking com uma árvore
+
+  → Voltando ao problema das 8 rainhas, a primeira  coisa  a  ser
+  removida  são  as simetrias, pois as damas são todas idênticas.
+  Se não removidas, cada  simetria  gera  8!  =  40.320  soluções
+  simétricas
+
+  →  Para  remover  as  simetrias, basta considerar que a dama da
+  posição a_k está em uma casa de número  maior  do  que  a  dama
+  a_{k‐1}
+
+  →  Removidas  as  simetrias, o número de elementos do espaço de
+  busca é reduzido para C64,8 = 4.426 x 10^9
+
+  → Como pode haver apenas uma rainha por linha, a  representação
+  pode ser simplificada uma vez mais, armazenando apenas o número
+  da coluna que a dama da linha i ocupa. O novo espaço  de  busca
+  será 8^8 = 1.677 x 10^7
+
+  →  O  mesmo vale para as colunas: cada rainha deve estar em uma
+  coluna distintas, de modo que cada solução deverá ser uma  per‐
+  mutação  de  8 elementos.  Logo o espaço de busca será reduzido
+  para 8! = 40.320
+
+  → Agora, os candidados serão as colunas de uma dada  linha  que
+  não estão ameaçados pelas damas já posicionadas
+
+    · Código: 8‐queens.c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,264 @@
+
+                        [1mTeoria dos Grafos[0m
+
+
+[4mTeoria[24m [4mdos[24m [4mGrafos[0m
+
+  → Estuda as propriedades das estruturas dos grafos
+
+  →  Ela define uma linguagem para a descrição e entendimento dos
+  grafos
+
+  → Muitos problemas são resolvidos através da  identificação  da
+  noção  da Teoria dos Grafos subjacente e a aplicação de algori‐
+  mos clássicos
+
+[4mPropriedades[24m [4mdo[24m [4mGrau[0m
+
+  → Uma grafo é composto de vértices e arestas
+
+  → O grau de um vértice diz respeito ao número  de  arestas  que
+  estão ligadas a ele
+
+  → A primeira propriedade relacionada ao grau dos vértices de um
+  grafo é que, em um grafo não‐direcionado, a soma de todos estes
+  graus é igual ao dobro do número de vértices
+
+  →  Uma  consequência  direta  destas propriedade é que um grafo
+  não‐direcionado possui um número par de vértices com grau ímpar
+
+  → Já nos grafos direcionados, a soma dos graus de  chegada  dos
+  vértices deve ser igual ao grau de saída
+
+  → Árvores são grafos não‐direcionados e acíclicos
+
+  → Em uma árvoes, folha é um vértice de grau 1
+
+  →  Uma  árvore  com n vértices possui n ‐ 1 arestas: em árvores
+  não triviais (n > 2), há sempre, no mínimo, 2 folhas
+
+  → Árvores enraizadas são grafos direcionados onde todos os nós,
+  exceto a raiz, tem grau de chegada igual a 1. As folhas em grau
+  de saída 0
+
+  → Árvores binárias são árvores enraizadas  cujos  vértices  tem
+  grau de saída ou zero ou 2
+
+  → Ao menos metade dos vértices de uma árvore binária são folhas
+
+  →  A árvore de espalhamento de um grafo G = (V, E) é um subcon‐
+  junto E’ de E tal que E’ é uma árvore em V
+
+  → Todo grafo conectado tem uma árvore de espalhamento
+
+  → Pode‐se construir uma  árvore  de  espalhamento  através  das
+  relações de parentesco das buscas por extensão ou profundidade
+
+  →  A árvore de espalhamento mínima é uma importante propriedade
+  dos grafos ponderados
+
+[4mConectividade[0m
+
+  → Um grafo é conectado se existe um caminho não‐direcionado en‐
+  tre cada par de vértices
+
+  →  A existência de uma árvore de espalhamento é suficiente para
+  provar a conectividade
+
+  → A conectividade de vértices (ou arestas) é o menor número  de
+  vértices  (ou  arestas)  que devem ser removidos para tornar um
+  grafo desconectado
+
+  → Um único vértice tal que sua remoção torna o grafo  desconec‐
+  tado é denominado vértice de articulação
+
+  → Qualquer grafo que não possui um vértice de articulação é de‐
+  nominado biconectado
+
+  → Uma única aresta cuja remoção torna o  grafo  desconectado  é
+  denominada ponte
+
+  → Um grafo sem pontes é denominado biconectado por arestas
+
+  →  É  possível  encontrar  vértices de articulação e pontes por
+  força bruta: basta remover o vértice/aresta do  grafo  e  veri‐
+  ficar se o grafo permanece conectado
+
+  →  Componentes  fortemente  conectados  em  grafos direcionados
+  dizem respeito à partição do grafo em conjuntos tais que  exis‐
+  tem  caminhos direcionados entre quaisquer pares de vértices de
+  um mesmo conjunto
+
+  → Tais componentes podem ser identificados através  de  traves‐
+  sias  de  profundidade,  que  geram  ciclos a partir de um dado
+  vértice, e todos os vértices deste ciclo devem estar  no  mesmo
+  componente fortemente conectado
+
+[4mCiclos[24m [4mem[24m [4mgrafos[0m
+
+  → Todos grafos, que não árvores, contém ciclos
+
+  →  São  notáveis  os  ciclos  que  visitam todos os vértices ou
+  arestas do grafo
+
+  → Um ciclo euleriano visita cada aresta do grafo uma única  vez
+  (um  exemplo  prático  são as brincadeiras infantis de desenhar
+  uma figura sem tirar o lápis do papel)
+
+  → No sentido mais estrito da palavra, ciclos eulerianos são, de
+  fato,  circuitos,  uma vez que podem visitar um vértice mais de
+  uma vez
+
+  → Todo grafo não direcionado contém um  ciclo  euleriano  se  é
+  conectado e cada vértice tem grau par (pois o circuito deve en‐
+  trar e sair de cada vértice que ele encontra)
+
+  → Novamente a travessia por  profundidade  pode  ser  utilizado
+  para  construir  um ciclo euleriano, identificando um ciclo por
+  vez e os unindo ao final através dos vértices em comum entre os
+  ciclos
+
+  →  Se  o grafo for direcionado, a condição para a existência de
+  ciclos euleriano é que, para cada vértice, o  grau  de  entrada
+  seja igual ao grau de saída
+
+  →  Caminhos  eulerianos  são travessias que visitam cada aresta
+  uma única vez, mas pode não terminar no ponto de saída
+
+  → Todo ciclo euleriano é um caminho euleriano, mas a  recíproca
+  não é verdadeira
+
+  → Um ciclo hamiltoniano é uma travessia que visita cada vértice
+  uma única vez
+
+  → O problema de se determinar um ciclo euleriano em um grafo  G
+  =  (V,  E)  pode ser reduzido ao problema de encontrar um ciclo
+  hamiltoniano em um grafo G’ = (V’, E’) tal que cada vértice  V’
+  representa uma aresta E e as arestas E’ conectam todos os pares
+  vizinhos de arestas de G
+
+  → Não existe um algoritmo eficiente de se determinar  um  ciclo
+  hamiltoniano em um grafo
+
+  →  Em  um grafo pequeno, a alternativa é utilizar um backtrack‐
+  ing: cada ciclo hamiltoniano pode ser descrito como uma  permu‐
+  tação dos vértices
+
+[4mGrafos[24m [4mPlanares[0m
+
+  →  Grafos  planares  são aqueles que podem ser desenhados em um
+  plano de forma que nenhuma aresta cruze a outra
+
+  → Uma importante propriedade de grafos planares é  a  seguinte:
+  se n é o número de vértices, m o número de arestas e f o número
+  de faces, então a Fórmula de Euler diz que n ‐ m + f = 2
+
+  → Árvores são grafos planares com apenas uma face
+
+  → Existem algoritmos eficientes para testar se um grafo é  pla‐
+  nar ou não, embora sejam deveras complicados
+
+  →  A  Fórmula de Euler, contudo, pode provar eficientemente que
+  um grafo não é planar: todo grafo  planar  contém,  no  máximo,
+  3n‐6 arestas, para n > 2
+
+  →  A consequência disso é que cada grafo planar deve contém uma
+  vértice de grau, no máximo, igual a 5
+
+[4mÁrvores[24m [4mde[24m [4mespalhamento[24m [4mmínimas[0m
+
+  → Uma árvore de espalhamento de um grafo G = (V, E) é  um  sub‐
+  conjunto  das arestas E que formam uma árvore que conecta todos
+  os vértices V
+
+  → Para um grafo ponderado, a árvore de  espalhamento  mínima  é
+  aquela cuja soma dos pesos das arestas é o menor possível
+
+  →  Os  principais algoritmos para se determinar a árvore de es‐
+  palhamento mínima são do de Kruskal e o de Prim
+
+  →  Para tais algoritmos,  é  necessária  uma  representação  de
+  grafo que considere os pesos das arestas
+
+    · Código: edge_weighted_graph.h
+
+  →  O algoritmo de Prim monta a árvore de espalhamento mínimo em
+  estágios
+
+  → Cada iteração do algoritmo adiciona um novo vértice na árvore
+  de espalhamento
+
+  →  Sempre  será  adicionada  a  aresta de menor peso que une um
+  vértice da árvore a um vértice que não está na árvore
+
+  → A implementação mais simples é declarar uma variável booleana
+  para cada vértice, indicando se ele já está na árvore ou não, e
+  a cada iteração buscar, entre as arestas a de  menor  peso  que
+  tem exatamente um vértice na árvore
+
+  →  Outra  possibilidade  é manter o registro da aresta de menor
+  peso de algum vértice da árvore para qualquer vértice  que  não
+  esteja na árvore
+
+  →  O  menor  destes será adicionado a cada iterção, e os custos
+  dos restantes deve ser atualizado
+
+    · Código: prim.c
+
+  → A árvore de espalhamento mínima ou o custo  total  podem  ser
+  obtidos de duas maneiras
+
+  → A mais simples é ampliar este procedimento com impressões dos
+  vértices, a medida que são inseridos, e acumular  os  pesos  em
+  uma variável que será retornada posteriormente
+
+  → Outra forma é extrair tais informações do vetor de parentesco
+  que é construído ao longo do algoritmo e do próprio grafo
+
+  → A árvore de espalhamento máxima pode ser obtida com  o  mesmo
+  algoritmo: basta tornar negativo os sinais de todos os pesos
+
+  →  A  árvore de produtos de espalhamento mínimo pode ser obtida
+  novamente com mesmo algoritmo, porém utilizando o log  de  cada
+  peso
+
+  → Árvores de espalhamento mínimo com gargalo mínimo são árvores
+  que tem o menor valor máximo possível.  As  árvores  de  espal‐
+  hamento mínimo já possuem tal propriedade
+
+  →  A  árvore de espalhamento mínimo é única se todos os m pesos
+  são distintos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

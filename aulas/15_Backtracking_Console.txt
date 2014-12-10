@@ -1,0 +1,132 @@
+
+                          [1mBacktracking[0m
+
+
+[4mForça[24m [4mbruta[0m
+
+  →  O  desempenho atual dos computadores torna a força bruta uma
+  técnica viável para a resolução de problemas
+
+  → Basta atentar ao fato de que o número  de  possibilidades  do
+  problemas seja computacionalmente viável
+
+  → Numa aproximação rude, um computador hoje pode processar cer‐
+  ca de um milhão de itens por segundo
+
+  → Também é eficaz desenvolver métodos que permitam a redução do
+  universo  de  possibilidades, descartando uma possibilidade tão
+  logo ela se mostre inválida
+
+[4mBacktracking[0m
+
+  → Backtracking é um método sistemático de iteração sobre  todas
+  as possíveis configurações de um espaço de busca
+
+  →  É  uma  técnica geral, que deve ser adaptada para cada apli‐
+  cação ou problema
+
+  → No caso geral, a solução a é um vetor a  =  (a_1,  a_2,  ...,
+  a_n), onde cada a_i é um elemento de um conjunto finito S_i
+
+  →  Este  vetor  pode  representar um arranjo, onde a_i contém o
+  i‐ésimo elemento da permutação; ou um subconjunto S_i, onde a_i
+  é  verdadeiro  se  o i‐ésimo elemento do conjunto universo per‐
+  tence a S_i; ou uma sequência de movimentos em um jogo, por ex‐
+  emplo
+
+  → Cada passo do backtracking começa com uma solução parcial a =
+  (a_1, a_2, ..., a_k), e tenta ampliá‐la através  da  adição  de
+  uma novo elemento
+
+  →  Após  essa adição é necessário verificar se a continua sendo
+  uma solução: caso seja, ele pode ser processada, contada, etc
+
+  → caso contrário, deve‐se checar se ainda há modos de  extender
+  a  solução  parcial:  se  houver,  continuar  no próximo passo;
+  senão, remova o último elemento de a e passe a  próxima  possi‐
+  bilidade, se existir
+
+    · Código: backtrack.c
+
+  →  A  função  is_a_solution(a,  k,  input)  verifica  se  as  k
+  primeiras posições do vetor formam uma solução para o problema
+
+  → O parâmetro input permite passar informações gerais  sobre  o
+  problema (como, por exemplo, o tamanho da solução)
+
+  →  A  função  construct_candidates(a, k, input, c, ncandidates)
+  preenche o vetor c com o conjunto completo  de  possíveis  can‐
+  didatos  para a k‐ésima posição de a, dado o conteúdo das k ‐ 1
+  posições já preenchidas,  e  retorna  o  número  de  candidatos
+  através do parâmetro ncandidates
+
+  →  A  função process_solution(a, k) trata a solução encontrada,
+  de acordo com o problema
+
+  → O backtracking garante a corretude através da  enumeração  de
+  todas as possibilidades, e a eficiência, não visitando um mesmo
+  estado mais de uma vez
+
+  → A recursão permite uma implementação simples  e  elegante  do
+  backtracking
+
+[4mExemplo[24m [4mde[24m [4mbacktracking:[24m [4mConstrução[24m [4mde[24m [4mtodos[24m [4mos[24m [4msubconjuntos[0m
+
+  → O problema consiste em determinar todos os 2^n subconjuntos a
+  partir d n elementos distintos
+
+  → Isto será feito através da iteração de todos os possíveis 2^n
+  vetores  de n elementos de verdadeiro ou falso, onde o elemento
+  i denota a presença ou não do i‐ésimo elemento no subconjunto
+
+  → Na notação de backtracking, S_k = {true, false}, e  a  é  uma
+  solução se k >= n
+
+  → A função is_a_solution() simplesmente checa se k == n
+
+  →  Para  cada posição k, os candidatos são sempre 2: verdadeiro
+  ou falso, de modo que a função construct_candidates() também  é
+  deveras simples
+
+  → A função process_solution() imprime a solução encontrada
+
+  → O algoritmo deve começar no caso base, com k = 0, e input = n
+
+    · Código: subsets.c
+
+  →  A  ordem  dos  subconjuntos gerados depende da etapa da con‐
+  struções dos possíveis candidatos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

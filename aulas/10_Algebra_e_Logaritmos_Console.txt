@@ -1,0 +1,198 @@
+
+                      [1mÁlgebra e Logaritmos[0m
+
+
+[4mÁlgebra[0m
+
+  → A álgebra consiste no estudo de grupos e anéis
+
+  →  Em  nível  de segundo grau, a álgebra se limita ao estudo de
+  equações e polinômios
+
+  → Os polinômios são expressões do tipo p(x)  =  c_0  +  c_1x  +
+  c_2x^2  + ..., onde x é a variável e c_i o coeficiente do termo
+  x^i
+
+  → O grau de um polinômio é o maior i tal que c_i é diferente de
+  zero
+
+[4mManipulação[24m [4mde[24m [4mpolinômios[0m
+
+  →  A  implementação mais comum de um polinômio de grau n em uma
+  variável é um vetor de n + 1 coeficientes (do c_0 ao c_n)
+
+  → Esta representação facilita  a  implementação  das  operações
+  básicas sobre polinômios, descritas a seguir
+
+  →  Avaliação:  determinar  o valor p(x) para um x dado pode ser
+  feito por força bruta, calculando cada fator c_ix^i independen‐
+  temente  e somando os resultados obtidos. O problema é que esta
+  abordagem leva a O(n^2) multiplicações
+
+  → Para implementar esta avaliação em O(n), basta  observar  que
+  x^i  = x * x^{i‐1}, começar pelos termos de menor grau e manter
+  o registro da potência já calculada
+
+  → Também é possível utilizar a regra de Horner:
+
+    c_nx^n + c_{n‐1}x^{n‐1} + ... + c_0 = ((c_nx  +  c_{n‐1})x  +
+    ...)x + c_0
+
+  →   Adição/Subtração:  estas  operações  são  mais  simples  em
+  polinômios do que grandes inteiros, uma vez que não há overflow
+  em cada termo. Basta somar e subtrair termo a termo
+
+  →  Multiplicação: o produto entre p(x) e q(x) é a soma dos pro‐
+  dutos de todos os termos de p por todos os termos de q, isto é,
+
+    p(x)q(x)  =  sum_{i=0}^{grau  de  p}  sum_{j=0}^{grau  de  q}
+    (c_ic_j)x^{i+j}
+
+   → Este soma de produtos termo a termo é denominada convolução
+
+   →  Outros exemplos de convolução são o produto de inteiros e a
+   busca de uma string em um texto
+
+   → A FFT (Fast Fourier Transform) calcula convoluções em O(nlog
+   n) ao invés de O(n^2)
+
+   → Divisão: os polinômios não são fechados para a divisão (isto
+   é, a divisão de dois polinômios pode resultar em uma expressão
+   que  não  é  polinomial).  Levando isto em consideração, a di‐
+   visão de polinômios é semelhante a divisão de números inteiros
+
+   → Se o polinômio é esparso (isto é,  com  muitos  coeficientes
+   nulos),  uma melhor representação seria uma lista encadeada de
+   pares coeficientes/grau
+
+   → Se o polinômio é multivariado, os coeficientes podem ser ar‐
+   mazenados  em matrizes. Por exemplo, para o polinômio bivaria‐
+   do, o elemento C[i][j] da matriz C representa o coeficiente do
+   termos x^iy^j
+
+   →  Dado  um polinômio p(x) e um número t, o problema de encon‐
+   trar as raizes consiste em determinar todos os x tais que p(x)
+   = t
+
+   →  Se p(x) é um polinômio de primeiro grau, a raiz única é x =
+   (t ‐ a_0)/a_1
+
+   → Se p(x) é um polinômio de segundo grau, as duas raizes podem
+   ser computadas pela expressão
+
+    x = (‐a_1 +‐ sqrt{a_1^2 ‐ 4a_2(a_0 ‐ t)})/2a_2
+
+  →  Para graus maiores, é necessário utilizar métodos numéricos,
+  como os métodos de Newton e Newton‐Raphson
+
+  → A ideia central deste métodos é a busca binária:  se  f(x)  é
+  uma  função monotonicamente crescente entre l e u, isto é, f(i)
+  <= f(j) para todos l <= i <= j <= u. Para encontrar uma raiz de
+  f(x)  = t, compare f((l+u)/2) com t. Se t < f((l+u)/2), então a
+  raiz está entre l e (l+u)/2; caso contrário, a raiz está  entre
+  (l+u)/2  e u. Basta continuar até que o intervalo de busca seja
+  pequeno o suficiente
+
+  →  Este  método  pode  ser  utilizado  para   computar   raizes
+  quadradas,  resolvendo  x^2 = t, no intervalo 1 e t, para qual‐
+  quer t >= 1
+
+[4mLogaritmos[0m
+
+  → A função logaritmo é a inversas da exponencial,  isto  é,  se
+  b^x = y, então log_b y = x
+
+  → O número b é a base do logaritmo
+
+  →  Duas bases importantes historicamente são e e 10. Logaritmos
+  nestas bases são escritos como ln x e log x
+
+  → Observe que são verdadeiras as expressões exp(ln  x)  =  x  e
+  ln(exp x) = x
+
+  →  Tabelas de logaritmos na base 10 eram utilizadas para multi‐
+  plicar grandes números, antes do advento das calculadoras
+
+  → A multiplicação utilizava a propriedade  dos  logaritmos  que
+  transforma produtos em somas: log_a xy = log_a x + log_a y
+
+  → Uma consequência desta propriedade é que log_a n^b = blog_a n
+
+  →  Combinadas,  estas  propriedades  permitem  calcular  a^b da
+  seguinte forma:
+
+    a^b = exp(ln(a^b)) = exp(bln a)
+
+  →  Este  método  pode  ser  utilizado  para   computar   raizes
+  quadradas, com b = 1/2
+
+  →  Como as implementações de exp e ln são baseadas em expansões
+  da série de Taylor, de modo que erros de  arredondamento  podem
+  fazer que expressões como exp (0.5 ln 4) não retorne exatamento
+  2
+
+  → A mudança  entre  bases  de  logaritmos  pode  ser  realizada
+  através da expressão
+
+    log_a b = log_c b / log_c a
+
+[4mBibliotecas[24m [4mde[24m [4mnúmeros[24m [4mreais[0m
+
+  →  Em  C,  a  biblioteca math.h provê as seguintes funções para
+  números reais, dentre outras:
+
+    · double floor(double x);
+    · double ceil(double x);
+    · double fabs(double x);
+    · double sqrt(double x);
+    · double cbrt(double x);
+    · double exp(double x);
+    · double log(double x);
+    · double log10(double x);
+    · double pow(double x);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

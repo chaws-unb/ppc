@@ -1,0 +1,132 @@
+
+                       [1mRecursão e Indução[0m
+
+
+[4mRecursão[24m [4mé[24m [4mIndução[0m
+
+  →  A  indução matemática é uma ferramenta útil para a resolução
+  de recorrências
+
+  → A indução parte da verificação de um caso base,  e  supõem  a
+  hipótese  verdadeira  até  o caso n ‐ 1. Se isto implicar a ve‐
+  racidade do caso n, a hipótese é verdadeira para todo n
+
+  → A semelhança com a recursão computacional não é coincidência:
+  a recursão computacional é indução matemática
+
+  →  Em  ambos  casos, temos condições gerais (chamada recursiva,
+  hipótese para n ‐ 1) e específicas (caso base)
+
+  → A condição geral permite subdividir o problema  em  problemas
+  menores do mesmo tipo
+
+  → A condição específica encerra a recursão ou inicia a indução
+
+  →  Uma  maneira de resolver recorrências é chutar uma solução e
+  tentar prová‐la por indução
+
+  → Uma forma de tentar visualizar a solução possível  é  tabular
+  os primeiros termos da recorrência
+
+  →  Por  exemplo, a recorrência T_n = 2T_{n‐1} + 1, T_0 = 0, tem
+  como primeiros termos 0, 1, 3, 7, 15, 31, 63, 127, o que sugere
+  uma solução do tipo T_n = 2^n ‐ 1
+
+  → Para demonstrar a solução, primeiro prove para o caso n = 0
+
+  →  Assuma  a  expressão verdadeira para T_{n‐1} e use este fato
+  para provar T_n
+
+[4mSequências[24m [4mde[24m [4mcontagem[0m
+
+  → Há diversas sequências de contagem que surgem em aplicações
+
+  → O conhecimento destas  sequências  permitem  resolver  vários
+  problemas de combinatória
+
+  →  Números  de  Fibonacci: são definidos pela recorrência F_n =
+  F_{n‐1} + F_{n‐2}, com F_0 = 0 e F_1 = 1
+
+  → Foram a mais simples e interessante relação de recorrência
+
+  → A forma fechada é difícil de adivinhar:
+
+    F_n = frac{1}{sqrt{5}} big( big( frac{1 + sqrt{5}}{2}^n  big)
+    ‐ big( frac{1 ‐ sqrt{5}}{2}^n big) big)
+
+  →  Como  o  termo  (1 ‐ sqrt{5})/2 está entre 0 e 1, todas suas
+  potências também estão, de modo que o primeiro termo  pode  de‐
+  terminar o termo F_n com margem de erro de mais ou menos 1
+
+  →  Números  de Catalan: são dados pela recorrência e pela forma
+  fechada
+
+    C_n  =  sum_{k=0}^{n‐1}  C_kC_{n‐1‐k}  =   frac{1}{n+1}   bi‐
+    nom{2n}{n}, C_0 = 1
+
+  → Os primeiros termos são 1, 2, 5, 14, 42, 132, 429, 1430, ...
+
+  →  Aparecem  em problemas de combinatória, como a construção de
+  uma fórmula balanceada com n conjuntos de parêntesis  esquerdos
+  e direitos
+
+  →  Isto  segue  do seguinte argumento: o parêntesis esquerdo l,
+  mais à esquerda, deve combinar com um parêntesis direito  r  de
+  modo  que a expressão fique dividida em duas subexpressões bal‐
+  anceadas: uma delimitada por l,r, com k pares, e  outra  à  es‐
+  querda  de r, com n ‐ k ‐ 1 pares (pois o par l,r deve ser con‐
+  tabilizado). Isto leva a forma de recorrência de C_n
+
+  → Outras aplicações que  levam  aos  números  de  Catalan  são:
+  número n de triangularizações em um polígono convexo de n+2 la‐
+  dos e o número n de árvores binárias com raiz cheias  (isto  é,
+  cada nó ou tem dois filhos ou nenhum) com n + 1 folhas
+
+  →  Nùmeros  Eulerianos:  os  números  eulerianos <n k> contam o
+  número de permutações de comprimento n com exatamente k elemen‐
+  tos que são maiores do que seus antecessores (ou com exatamente
+  k sequências ascendentes). Por exemplo, <4 2> = 11
+
+  → Eles podem ser computados pela relação (a do livro está erra‐
+  da):
+
+    <n k> = (k+1)<n‐1 k> + (n ‐ k)<n‐1 k‐1>
+
+  → <k (k‐1)> = <k 0> = 1
+
+  →  Números de Stirling: há dois tipos de números de Stirling. O
+  primeiro, [n k], conta o número de permutações de  n  elementos
+  com exatamente k ciclos disjuntos. Por exemplo, [4 2] = 11
+
+  → Podem ser computados pela relação de recorrência
+
+    [n k] = [n‐1 k‐1] + (n‐1)[n‐1 k]
+
+  → O segundo tipo conta o número {n k} de modos de particionar n
+  elementos em k conjuntos disjuntos não ordenados e não  vazios.
+  Por exemplo, {4 2} = 7
+
+  →  A  relação  de recorrência é {n k} = k{n‐1 k} + {n‐1 k‐1} (o
+  livro está errado novamente)
+
+  → Partições inteiras: uma partição inteira de n  é  o  conjunto
+  não ordenado de inteiros positivos que somam n. Por exemplo, há
+  sete partições inteiras  de  5:  5,  4‐1,  3‐2,  3‐1‐1,  2‐2‐1,
+  2‐1‐1‐1, 1‐1‐1‐1‐1
+
+  →  A  função  f(n,k)  dá o número de partições de n com a menor
+  parte sendo no mínimo k. Daí: f(n, k) = f(n ‐ k, k) + f(n, k  +
+  1), com casos bases de f(n,n) = 1 e f(n, k) = 0 se k > n
+
+
+
+
+
+
+
+
+
+
+
+
+

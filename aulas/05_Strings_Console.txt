@@ -1,0 +1,132 @@
+
+                             [1mStrings[0m
+
+
+[4mCódigos[24m [4mde[24m [4mcaracteres[0m
+
+  → Os códigos de caracteres são funções entre números inteiros e
+  os símbolos de um determinado alfabeto
+
+  → Como  os  computadores  são  projetados  para  trabalhar  com
+  números, eles processam textos se referindo a estas associações
+
+  → O padrão ASCII (American Standard Code for Information Inter‐
+  change) é um código de caracteres de um byte  que  associa  2^7
+  caracteres
+
+  →  No  padrão  ASCII, o bit mais significativo é sempre igual a
+  zero
+
+  →  O  mapeamento  entre  os  números  e  os  caracteres  não  é
+  aleatório, e guarda importantes propriedades, como:
+    · Os caracteres não imprimíveis ou tem os três primeiros bits
+    nulos ou os sete últimos iguais a 1
+
+    · As letras minúsculas e maiúsculas são  organizadas  sequen‐
+    cialmente
+
+    · A posição relativa de uma letra no alfabeto pode ser obtida
+    através da subtração do caractere inicial (’a’ para  minúscu‐
+    las e ’A’ para maiúsculas)
+
+    ·  Esta manipulação também pode ser utilizada para conversões
+    de maiúsculo para minúsculo e vice‐versa
+
+    · Algoritmos de ordenação  utilizarão  estes  códigos  subja‐
+    centes,  de modo que os números predecerão as maiuscúlas e as
+    minúsculas, nesta ordem
+
+    · Os caracteres de nova linha (LF, código 10)  e  retorno  do
+    carro  (CR,  código  13) representam quebras de linha em Win‐
+    dows, enquanto em Linux utiliza‐se apenas  o  CR.  Isto  pode
+    gerar problemas de visualização de arquivos de texto entre os
+    dois sistemas
+
+  → Outros mapeamentos, como o Unicode, podem  utilizar  dois  ou
+  mais  bytes por caractere, e são capazes de representar os out‐
+  ros  idiomas  como  maior  número  de  caracteres   (português,
+  japonês, etc)
+
+  →  Em C e C++, o tipo primitivo char ocupa apenas um byte. Para
+  maiores caracteres, o C++  tem  o  tipo  wchar_t  (wide  char).
+  Questões  de diferenças de codificação e internacionalização de
+  códigos devem ser tratadas com atenção e cuidado
+
+[4mRepresentação[24m [4mde[24m [4mstrings[0m
+
+  → Em geral, strings são sequências ordenadas de caracteres
+
+  → Cada linguagem aborda strings de maneiras distintas, e é  im‐
+  portante  conhecer estas diferenças para evitar possíveis prob‐
+  lemas
+
+  → Em C/C++, strings são representados por arrays de  caracteres
+  terminados com o caractere nulo (0, zero). A falta deste carac‐
+  tere delimitador pode levar a erros nos algoritmos que  manipu‐
+  lam as strings
+
+  → Por conta do delimitador, o espaço alocado para estas strings
+  deve ser igual ao número de caracteres desejados mais  um.  Não
+  reservar este espaço pode levar aos erros já citados
+
+  → Outra maneira de se representar strings é reservar a primeira
+  posição do vetor para codificar o tamanho da string,  removendo
+  a necessidade do caractere terminador
+
+  →  A  vantagem  desta abordagem é que o array carrega consigo a
+  informação sobre o seu tamanho, o que não acontece na primeira
+
+  → Supostamente esta é a forma que o Java utiliza para implemen‐
+  tar as strings internamente
+
+  →  Uma  terceira forma é utilizar uma lista encadeada de carac‐
+  teres
+
+  → Esta forma é evitada, por conta do gasto extra de memória com
+  os ponteiros da lista
+
+  →  Contudo,  esta  forma  é apropriada nos casos onde há várias
+  inserções ou remoções de caracteres  em  posições  diversas  da
+  string
+
+  →  A  representação  mais adequada depende do contexto em que a
+  string será utilizada. Questões a serem analisadas envolvem:
+
+    · Qual representação utiliza menos espaço em memória?
+
+    · Quais representações restringem as possibilidades de repre‐
+    sentações das strings?
+
+    ·  Quais representações permitem acesso aleatório imediato ao
+    i‐ésimo caractere?
+
+    · Qual representação permite checar se a posição i é  ou  não
+    válida  na  string  de forma eficiente, evitando erros de in‐
+    dexação?
+
+    · Qual representação  permite  a  inserção  ou  a  remoção  o
+    i‐ésimo elemento de forma eficiente?
+
+    · Qual é mais eficiente se as strings tem um capacidade máxi‐
+    ma pré‐determinada?
+
+[4mExemplo:[24m [4mCorporate[24m [4mRenamings[0m
+
+  → Descrição do problema: pg 59 do livro texto
+
+  → Uma estratégia de leitura das strings consiste em ler a linha
+  de  input  inteira,  e depois varrer a linha em busca as infor‐
+  mações  desejadas  (ver  métodos  read_changes()  e  read_quot‐
+  ed_string() no arquivo name.c)
+
+  →  Também  é necessário determinar se uma determinada string se
+  encontra ou não em uma linha de texto (ver  método  findmatch()
+  no name.c)
+
+
+
+
+
+
+
+

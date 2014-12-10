@@ -1,0 +1,132 @@
+
+                [1mIntrodução aos Juízes Eletrônicos[0m
+
+
+[4mJuizes[24m [4mEletrônicos[0m
+
+  → Web sites que fornecem mecanismos de correção automática para
+  os problemas propostos
+
+  → A correção é feita através de testes unitários,  e  contempla
+  desde a compilação e execução até a validação dos resultados de
+  cada teste unitário
+
+  → O problema só é considerado correto se passar  pelo  processo
+  de  compilação  de  forma  bem  sucedida  e por todos os testes
+  unitários
+
+[4mExemplos[24m [4mde[24m [4mjuizes[24m [4meletrônicos[0m
+
+  → www.programming‐challenges.com (contém apenas os exemplos  do
+  livro texto)
+
+  →  www.urionlinejudge.com.br  (site  brasileiro,  bom para ini‐
+  ciantes)
+
+  → uva.onlinejudge.org (site da Universidad de Valladolid,  bas‐
+  tante abrangente)
+
+  → O processo de registro é simples e gratuito
+
+[4mResposta[24m [4mdos[24m [4mjuizes[0m
+
+  →  A  cada  submissão  de  resposta de um problema por parte do
+  usuário, o juiz retornará uma resposta sobre a solução
+
+  → Caso o problema esteja correto, a  resposta  será  ’Accepted’
+  (AC)
+
+  →  Caso o problema esteja incorreto, será retornada uma das re‐
+  spostas listadas a seguir
+
+  → Importante ressaltar que o juiz não diz  onde  está  o  erro,
+  apenas o tipo de erro
+
+[4mRespostas[24m [4mpara[24m [4mquestões[24m [4mincorretas[0m
+
+  → ’Presentation Error’ (PE): as saídas do programa estão corre‐
+  tas, mas a apresentação (formatação,  espaçamento,  etc)  estão
+  errados
+
+  → ’Accepted’ (PE): ainda há um erro de apresentação, mas o juiz
+  considerou a resposta como correta
+
+  → ’Wrong Answer’ (WA): um ou mais saídas geradas estão incorre‐
+  tas.  O  juiz  não informa as entradas que geraram o erro nem a
+  resposta errada
+
+  → ’Compile Error’ (CE): o programa  não  compila  corretamente.
+  Nos  sites é são listados os parâmetros de compilação que devem
+  ser utilizados          → ’Runtime Error’ (RE): o programa tra‐
+  va  durante  a execução, geralmente por conta de falhas de seg‐
+  mentação, divisão por zero, etc
+
+  → ’Time Limit Exceeded’  (TL):  os  programas  devem  gerar  as
+  saídas  válidas dentro de um limite de tempo especificado. Caso
+  o programa exceda este tempo, esta será a resposta do juiz
+
+  → ’Memory Limit Exceeded’ (ML): o programa requer mais  memória
+  em sua execução do que o juiz permite
+
+  → ’Output Limit Exceeded’ (OL): o programa tentou imprimir mais
+  informações do que o permitido. Geralmente  causado  por  laços
+  infinitos
+
+  → ’Restricted Functions’ (RF): o programa faz uma chamada a uma
+  função considerada ilegal (por exemplo, fork() e fopen())
+
+  → ’Submission Error’ (SE): o formulário de envio  da  submissão
+  tem campos vazios ou incorretos
+
+[4mLinguagens[24m [4mpermitidas[0m
+
+  →  Cada  juiz tem um conjunto de linguagens aceitas para a res‐
+  olução dos problemas
+
+  → Em geral, as linguagens aceitas são C, C++, Java e Pascal
+
+  → Nos sites são listados os processos de compilação, de escrita
+  e  leitura na saída padrão e outras peculiaridades de cada lin‐
+  guagem
+
+  → A linguagem mais utilizada pelos usuário é C++
+
+[4mEntrada[24m [4me[24m [4msaída[24m [4mpadrão[0m
+
+  → Cada linguagem tem mecanismos para ler e escrever  na  entra‐
+  da/saída  padrão do sistema (geralmente representadas pelo con‐
+  sole)
+
+  → Em geral, não é especificado o número de entradas que o prob‐
+  lema terá: neste caso, é necessário ler da entrada até o fim de
+  arquivo (EOF)
+
+  → Exemplos de leitura de 3  inteiros,  até  o  EOF  (o  arquivo
+  ints.txt contém 5 linhas com 3 inteiros cada):
+    · read.c
+    · read.cpp
+
+  →  Uma  forma de testar as entradas é escrevê‐las em um arquivo
+  (in.txt), compilar o programa (prog) e executar o comando
+
+    $ cat in.txt | ./prog
+
+[4mDicas[24m [4mde[24m [4mprogramação[0m
+
+  → Escrever os comentários antes
+
+  → Documentar cada variável
+
+  → Usar constantes simbólicas
+
+  → Use enumerações quando necessário
+
+  → Utilizar funções e subrotinas para evitar redundância
+
+  → Escrever linhas de depuração com significado (completas)
+
+  → Evitar orientação a objetos (aumenta a complexidade do  prob‐
+  lema, sendo melhor utilizada em problemas de grande porte)
+
+
+

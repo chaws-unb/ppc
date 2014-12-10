@@ -1,0 +1,132 @@
+
+                      [1mIntrodução aos Grafos[0m
+
+
+[4mTipos[24m [4mde[24m [4mGrafos[0m
+
+  →  Um grafo G = (V, E) é definido por um conjunto de vértices V
+  e um conjunto de arestas E  (edges,  em  inglês),  definido  de
+  pares ordenados ou não de vértices
+
+  →  Por  exemplo, a malha viária de um estado poderia ser repre‐
+  sentada por um grafo onde as  cidades  são  os  vértices  e  as
+  estradas são as arestas
+
+  →  Os  grafos  podem  ser  classificados  segundo  os seguintes
+  critérios:
+
+    → Direcionado ou Não‐Direcionado  (Dirigido  ou  Digrafo):  o
+    grafo  não é direcionado se o fato da aresta (x, y) pertencer
+    a E implica que a aresta (y, x) também  pertence.  Caso  con‐
+    trário, o grafo é direcionado
+
+    →  Ponderado  ou  Não  Ponderado: Em grafos poderados, a cada
+    vértice de G é associado um valor númerico, denominado  peso.
+    Exemplos de peso, na prática: distância, tempo de viagem, ca‐
+    pacidade máxima, etc.
+
+    → Cíclico ou Acíclico: gráficos acíclicos não podem ter  nen‐
+    hum  ciclo.  Árvores  são  grafos não‐direcionados acíclicos.
+    Grafos acíclicos direcionados são denominados DAG
+
+    → Simples e Não‐simples: Um autoloop é uma aresta (x, x)  que
+    envolve  apenas  um  vértice;  e uma multiaresta (x, y) é uma
+    aresta que aparece mais de uma vez no grafo. Se o  grafo  não
+    tem autoloops nem multiarestas ele é denominado simples
+
+    →  Embutidos  ou Topológicos: o gráfo é embutido se foram de‐
+    terminadas posições geométricas para os vértices  e  arestas.
+    Caso contrário o grafo é topológico
+
+    →  Implícito  ou  Explícito:  os  grafos  implícitos são con‐
+    struídos a medida que são utilizados,  enquanto  que  os  ex‐
+    plícitos são construídos na íntegra antes de sua utilização
+
+    →  Rotulados  ou  Não‐Rotulados:  em  grafos  rotulados, cada
+    vértice recebe um nome único, que o distingue de todos os de‐
+    mais vértices
+
+[4mEstruturas[24m [4mde[24m [4mDados[24m [4mpara[24m [4mGrafos[0m
+
+  →  Há várias formas de se representar um grafo G = (V, E) com n
+  vértices e m arestas
+
+    → Matriz de adjacência: G pode ser representado por  uma  ma‐
+    triz M de dimensões n x n, onde o elemento M_ij = 1 se (i, j)
+    é uma aresta de G, ou M_ij = 0, caso contrário. As  vantagens
+    desta representação são:
+      ·  Resposta rápida para perguntas do tipo: "(i, j) pertence
+      a G?"
+
+      · Inserção e remoção rápida de arestas
+
+    → A principal desvantagem é o uso excessivo de memória,  pois
+    representa arestas que não fazem parte do grafo
+
+    →  Lista de adjacência em listas: Uma forma mais eficiente de
+    representar grafos esparsos (com poucas arestas)  é  utilizar
+    listas encadeadas para armazenar os vizinhos de cada vértice,
+    sendo que cada vértice é posicionado em uma lista também
+
+    → É mais complicado responder a pergunta  "(i,j)  pertence  a
+    G?"  do  que  com  matrizes  de  adjacências,  porém o uso de
+    memória é muito menor
+
+    → Lista de adjacência em matrizes: é uma adaptação da  repre‐
+    sentação  anterior,  porém colocando as listas de adjacências
+    em uma matriz. Esta representação também  recebe  o  nome  de
+    representação estrela
+
+    → Tem como vantagem o fato de não precisar de ponteiros: bas‐
+    ta codificar o número de elementos da lista na  primeira  en‐
+    trada  de  cada  linha  da  matriz,  e listar os elementos em
+    seguida
+
+    → Porém, tem as piores características dos dois métodos ante‐
+    riores:  grande  uso  de memória e necessidade de buscas para
+    identificar a presença ou não de uma aresta
+
+    → Ainda assim, é uma estrutura simples, fácil de usar  e  im‐
+    plementar,  e a memória pode ser melhor utilizada alocando‐se
+    dinamicamente cada linha, evitando o desperdício de memória
+
+      · Código: graph.h
+
+    → Tabela de arestas: uma estrutura ainda mais simples para  a
+    representação de grafos é um vetor ou lista de arestas. Embo‐
+    ra não seja flexível para responder imediatamente  sobre  ad‐
+    jacências, funciona bem em situações mais simples
+
+[4mAlgoritmos[24m [4mbásicos[24m [4mem[24m [4mgrafos[0m
+
+  →  Inicialização:  na representação por lista de adjacências em
+  uma matriz (conforme a estrutura  apresentada  em  graph.h),  a
+  inicialização  deve configurar um estado inicial correto para o
+  grafo, definindo o número de vértices e arestas como zero, além
+  de zerar o grau (número de vértices adjacentes) de cada vértice
+
+    · Código: graph.c
+
+  →  Inserção  de  uma nova aresta: esta inserção deve atentar ao
+  fato do grafo ser direcionado ou não,  que  pode  acarretar  na
+  inserção  da aresta (y, x) a cada inserção de (x, y). Basta in‐
+  serir, o valor de y na primeira posição livre do vetor  de  ad‐
+  jacências de x, e atualizar o número de arestas
+
+  →  Leitura  de  um arquivo: basta inicializar o grafo e, impor‐
+  tante, inicializar o número  de  vértices.  Daí  é  só  ler  as
+  arestas do arquivo, inserindo uma por vez
+
+  → Impressão: uma maneira possível de imprimir um grafo é exibir
+  o número associado a cada vértice e, em seguida, sua  lista  de
+  adjacências
+
+    ·   Código:   main.c,   main.cpp,   (entradas:   edges.txt  e
+    edges_cpp.txt)
+
+
+
+
+
+
+

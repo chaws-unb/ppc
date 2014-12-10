@@ -1,0 +1,132 @@
+
+                            [1mOrdenação[0m
+
+
+[4mEstudo[24m [4mdos[24m [4malgoritmos[24m [4mde[24m [4mordenação[0m
+
+  →  A ordenação é considerada um dos algoritmos mais importantes
+  da ciência da computação
+
+  → O estudo dos algoritmos de ordenação é importante devido dois
+  motivos:
+
+    ·  Muitos dos problemas práticos envolvem a ordenação de ele‐
+    mentos ou podem ser resolvidos de forma mais eficiente se  os
+    dados estiverem ordenados
+
+    ·  Os  diferentes  algoritmos  de  ordenação  são baseados em
+    ideias e conceitos importantes na formação de um estudante  e
+    profissional da área de computação
+
+[4mAplicações[24m [4mda[24m [4mordenação[0m
+
+  →  Teste de unicidade: verificar se os elementos de um determi‐
+  nado conjunto são únicos ou não. Basta ordenar os  elementos  e
+  depois, em uma travessia, observar se dois elementos adjacentes
+  são ou não iguais
+
+  → Remoção de elementos repetidos. Novamente a ordenação dos el‐
+  ementos  facilita  a  tarefa: basta manter o registro do último
+  elemento verificado e continuar a travessia elemento a  elemen‐
+  to.  Assim que encontrar um elemento distinto do marcado, deve‐
+  se copiar o elemento encontrado para a posição seguinte à  mar‐
+  cada e incrementar o marcador
+
+  →  Prioridades.  A ideia básica das filas com prioridades é que
+  os elementos estejam ordenados de acordo com os critérios esta‐
+  belecidos
+
+  → Cálculo da mediana. A mediana é uma medida estatística que se
+  refere ao termo da posição central, quando as medidas estão de‐
+  vidamente  ordenadas (ou a média dos elementos centrais, quando
+  a quantidade de medidas é par)
+
+  → Reconstrução de uma sequência de elementos. Para manter a se‐
+  quência  original  de  um conjunto de dados, basta adicionar um
+  índice que registre a posição do elemento, de forma que  a  se‐
+  quência original pode se reconstruída com uma ordenação baseada
+  neste índice
+
+  → Interseção e união de conjuntos. Se ambos conjuntos estão or‐
+  denados,  a  união  pode ser determinada iterando entre os dois
+  conjuntos e escolhendo o menor dentre os  dois  elementos  com‐
+  parados  sucessivamente.  A  interseção  pode ser encontrada de
+  forma semelhante
+
+  → Escontrar uma solução específica. Equações do tipo x + y = z,
+  com  inteiros,  podem ter suas soluções determinadas através da
+  ordenação dos valores possíveis e um laço onde o índice  i  au‐
+  menta enquando o índice S[j] = z ‐ S[i] diminui
+
+  → Busca eficiente. Vetores ordenados formam a base para a busca
+  binária
+
+[4mFunções[24m [4mde[24m [4mordenação[24m [4mem[24m [4mC[24m [4me[24m [4mC++[0m
+
+  → A biblioteca ’stdlib.h’ de C contém a  função  qsort(),  cuja
+  assinatura é
+    · void qsort(void *base, size_t nel, size_t width, int (*com‐
+    pare)(const void *, const void *)
+
+  → O parâmetro base aponta para o vetor a ser ordenado
+
+  → O parâmetro nel determina o número de elementos a serem orde‐
+  nados,  enquanto  o parâmetro width define o tamanho, em bytes,
+  de cada elemento do vetor (o qual pode ser determinado  através
+  do operador sizeof)
+
+  →  Por fim, a ordenação é determinada pela função de comparação
+  cujo ponteiro é o quarto parâmetro. Ele recebe dois  argumentos
+  do  tipo de base, e deve retornar um número maior do que, igual
+  a ou menor do que zero caso o primeiro  argumento  seja  maior,
+  igual ou menor do que o segundo
+
+    · Código: intcompare.h
+    · Código: intcompare.c
+    · Código: megasena.c
+
+  →  A  biblioteca  ’stdlib.h’ também contém uma implementação da
+  busca binária com a função bsearch(), cuja assinatura é idênti‐
+  ca  a  da  qsort(), exceto pelo primeiro parâmetro key, que é o
+  valor a ser encontrado:
+    · bsearch(const void *key,  const  void  *base,  size_t  nel,
+    size_t width, int compare(const void *, const void *))
+
+  →  Em  C++,  a  STL  (Standard Template Library) provê a função
+  sort(), na biblioteca ’algorithms’, cuja assinatura é
+    · sort(RandomAcessIterator bg, RandomAcessIterator end);
+    · sort(RandomAcessIterator bg, RandomAcessIterator end,  Com‐
+    pare comp);
+
+  →  Esta  função utiliza o operador de comparação <, seja sobre‐
+  scrito ou a versão default para o tipo de dado do vetor
+
+  → O parâmetro comp deve ser uma função ou uma classe ou  estru‐
+  tura  que  tenha  uma função ou operador com assinatura equiva‐
+  lente a assinatura abaixo:
+    · bool cmp(const Type1& a, const Type2& b);
+
+  →  O  retorno  deve  ser  verdadeiro  (true)  caso  o  primeiro
+  parâmetro seja menor do que o segundo
+
+  →  A STL também provê a função stable_sort(), cuja assinatura é
+  idêntica a da sort(), mas ela mantem a ordem relativa dos  ter‐
+  mos quando ambos são iguais
+    · Código: megasena.cpp
+
+  → Outras funções associadas a ordenação disponíveis na STL são:
+  set_union(),  set_intersection(),  set_difference(),   nth_ele‐
+  ment(), unique()
+
+
+
+
+
+
+
+
+
+
+
+
+

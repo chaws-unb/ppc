@@ -1,0 +1,132 @@
+
+                  [1mDinâmica de Trabalho do Curso[0m
+
+
+[4mObjetivos[0m
+
+  →  Preparar  o aluno para as competições de programação, como a
+  Maratona de Programação
+
+  → Tornar o  aluno  capaz  de  implementar  problemas  de  maior
+  sofisticação  teórica, recorrentes em situações reais, valendo‐
+  se das técnicas apresentadas na disciplina
+
+  → Ampliar o entendimento de códigos e a capacidade  de  codifi‐
+  cação dos alunos
+
+  →  Fortalecer  a  base de conhecimentos do aluno para um melhor
+  desempenho nas demais disciplinas da  grade  de  Engenharia  de
+  Software
+
+[4mInformações[24m [4mimportantes[0m
+
+  → Plano de Ensino (entrega e leitura)
+
+  →   Compiladores  sugeridos:  Dev‐Cpp  (plataforma  Windows)  e
+  GNU/gcc (plataforma Linux)
+
+  → Contato: edsonalves@unb.br
+
+  → Senha do Moodle: ppcfga
+
+[4mCompilação[24m [4me[24m [4mdepuração[24m [4mde[24m [4mprogramas[0m
+
+  → $ gcc ‐g ‐o prog ‐W ‐Wall ‐pedantic ‐ansi ‐I. arquivo.c ‐lm
+
+  → $ g++ ‐g ‐o prog ‐W ‐Wall ‐pedantic ‐ansi ‐I. arquivo.c ‐lm
+
+  → $ gdb prog
+
+[4mInstalação[24m [4mdo[24m [4mjuiz[24m [4meletrônico[0m
+
+  → Descompacte o arquivo ’ejudge.tar.gz’:
+
+    $ tar vxzpf ejudge.tar.gz
+
+  → Entre no diretório ’ejudge’:
+
+    $ cd ejudge
+
+  → Rode o script de instalação:
+
+    $ ./install
+
+[4mUso[24m [4mdo[24m [4mjuiz[24m [4meletrônico[0m
+
+  → Copie os arquivos TXT que contém as entradas e saídas no  di‐
+  retório ’ejudge’, que está localizado na pasta do usuário
+
+  → No diretório em que está localizado o código‐fonte, invoque o
+  juiz:
+
+    $ edjuge arquivo.c(cpp)
+
+  → O juiz avaliará o nome do arquivo, realizará a  compilação  e
+  confrontará os resultados obtidos com os resultados esperados
+
+[4mEntradas[24m [4me[24m [4msaídas[0m
+
+  →  As  entradas  e  saídas  devem  ser lidas/escritas da entra‐
+  da/saída padrão (console)
+
+  → As entradas podem ser passadas ao programa  de  três  formas:
+  diretamente, via echo e via arquivos
+
+  →  A  forma  direta é executar o programa e inserir as entradas
+  quando solicitadas. Esta forma é a mais ineficiente,  pois  não
+  há  mensagens auxiliares para indicar quais são as entradas es‐
+  peradas, e cada execução implica em nova digitação dos dados
+
+  → A segunda forma é utilizar o comando ’echo’  para  mandar  as
+  entradas  para  a entrada padrão, e redirecioná‐las ao programa
+  via pipe:
+
+    $ echo entrada1 entrada2 ... entradaN | ./prog
+
+   → O echo permite testar rapidamente um conjunto de entradas, e
+   o console registra o comando para usos posteriores, evitando a
+   redigitação
+
+   → A terceira forma consiste em inserir todas as entradas em um
+   arquivo de texto (geralmente, um conjunto de entradas por lin‐
+   ha). Depois basta mandar o conteúdo do arquivo para a  entrada
+   padrão  com  o  comando  cat e redirecioná‐las ao programa via
+   pipe:
+
+    $ cat arquivo.txt | ./prog
+
+  → Esta é a forma mais eficiente a longo  prazo,  pois  evita  a
+  redigitação e armazena todo o conjunto de testes de uma só vez
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,198 @@
+
+                [1mIntrodução à Análise Combinatória[0m
+
+
+[4mAnálise[24m [4mCombinatória[0m
+
+  → A análise combinatória é a matemática da contagem
+
+  →  Os problemas de análise combinatória requerem, em geral, at‐
+  enção, intuições e o raciocínio correto
+
+  → Problemas de combinatória são apropriados  para  competições,
+  pois a solução correta substitui complicados programas que con‐
+  tam todas as possibilidades
+
+  → Isto pode levar a soluções ’off‐line’: se o número de  inputs
+  é pequeno, é possível escrever um programa que apenas imprime o
+  resultado correto, pré‐computado em outro ambiente, para a  en‐
+  trada dada
+
+[4mTécnicas[24m [4mde[24m [4mcontagem[24m [4melementares[0m
+
+  →  Regra do Produto: se o conjunto A tem |A| possibilidades e B
+  tem |B| possibilidaes, então existem |A|x|B| modos de  escolher
+  um elemento de A e um elemento de B. Exemplo: camisas e sapatos
+
+  → Regra da Soma: Se A tem |A| possibilidades e B tem |B| possi‐
+  bildades, então há |A| + |B| possibilidades de ocorrer A ou  B,
+  desde que os conjuntos sejam disjuntos
+
+  →  Regra  da  Inclusão‐Exclusão:  se  A e B tem uma interseção,
+  então |A ou B| = |A| + |B| ‐ |A e B|
+
+  → Para três conjuntos A, B e C, a regra da inclusão leva  a  |A
+  ou B ou C| = |A| + |B| + |C| ‐ |A e B| ‐ |A e C| ‐ |B e C| + |A
+  e B e C|
+
+  → Bijeção: Se for estabelecida uma relação um‐para‐um entre  os
+  elementos  de  dois conjuntos, a contagem de um conjunto imedi‐
+  atamente leva a contagem do outro
+
+  → Para montar bijeções de forma efetiva, é necessário  conhecer
+  um  repertório de conjuntos que a contagem seja conhecida, como
+  os citados a seguir
+
+  → Para cada conjunto, é importante conhecer os limites que per‐
+  mitem uma busca exaustiva
+
+  → Permutações: uma permutação é um arranjo de n itens, onde ca‐
+  da item aparece uma única vez.  Há  n!  permutações  distintas.
+  Para n = 10, 10! = 3.628.800, próximo do limite da busca exaus‐
+  tiva
+
+
+  → Subconjuntos: Um subconjunto é uma seleção de elementos  den‐
+  tre  n possíveis. Há 2^n diferentes subconjuntos para n elemen‐
+  tos (o subconjunto vazio sempre  é  um  subconjunto  possível).
+  Para n = 20, 2 ^ 20 = 1.048.576, próximo do limite da busca ex‐
+  austiva
+
+  → Strings: uma string é uma sequência de itens  escolhidos  com
+  repetição.   Há m ^ n sequências de n elementos escolhidos de m
+  elementos.
+
+[4mRelações[24m [4mde[24m [4mRecorrência[0m
+
+  → Relações de recorrência facilitam a  contagem  em  estruturas
+  definidas recursivamente
+
+  →  Muitas  funções naturais podem ser expressas facilmente como
+  relações de recorrência
+
+  → Por exemplo, qualquer polinômio pode ser representado por uma
+  relação de recorrência:
+
+    a_n = a_{n‐1} + 1, a_1 = 1 ‐‐‐‐> a_n = n
+
+    a_n = a_{n‐1} + 2n + 1 ‐‐‐‐> a_n = n^2
+
+    a_n = a_{n ‐ 1} + 2n ‐ 4 ‐‐‐> a_n = n^2 ‐ 5n + 6
+
+  → O mesmo vale para exponenciais:
+
+    a_n = 2a_{n‐1}, a_1 = 2 ‐‐‐> a_n = 2^n
+
+  →  Algumas funções, que são difíceis de serem descritas direta‐
+  mente   podem   ser   representadas   facilmente   através   de
+  recorrências:
+
+    a_n = na_{n‐1}, a_1 = 1 ‐‐‐‐> a_n = n!
+
+  →  É  possível resolver uma recorrência para determinar o termo
+  geral, mas no contexto computacional nem  sempre  é  necessário
+  fazê‐lo
+
+  →  Algumas  contagens  complicadas podem ser escrita facilmente
+  utilizando recorrência (por exemplo, número mínimo de  soluções
+  para a Torre de Hanoi)
+
+[4mCoeficientes[24m [4mBinomiais[0m
+
+  → São os números mais recorrentes em contagem
+
+  → (n k) conta o número de formas de escolher k elementos dentre
+  n possíveis
+
+  → Abaixo seguem exemplos de contagem que  utilizam  os  números
+  binomiais:
+
+  →  Comitês. Escolher um comitê de k membros dentre n candidatos
+  resulta em (n k) possíveis escolhas
+
+  → Caminhos em um grid. O número de caminhos  em  uma  malha  de
+  quadrados,  do canto superior esquerdo até o canto inferior di‐
+  reito, andando apenas para a direita e para baixo, com n linhas
+  e m colunas, tem sempre n + m passos, de modo que temos (n+m n)
+  caminhos
+
+  → Coeficientes de (a + b)^n. A expansão desta potência tem coe‐
+  ficiente  (n k) no termo a^kb^{n‐k} (Escreva as expansõese para
+  n = 2, 3 e 4 e observe os resultados)
+
+  → Triângulo de Pascal. É formado por números binomiais,  e  tem
+  importantes propriedades, como a soma da linha n+1 = 2^n
+
+  →  O  número  binomial  pode  ser  computado  de duas formas. A
+  primeira é a partir da definição:
+
+    (n k) = n!/((n‐k)!k!)
+
+  →  Contudo,  como  o  fatorial  cresce  muito  rápido,  há  uma
+  tendência ao overflow
+
+  → A segunda vem da propriedade que (n k) = (n‐1 k‐1) + (n‐1 k),
+  que pode ser observada no Triângulo de Pascal (esta soma também
+  representa as possibilidades de escolha de k elementos em n)
+
+  → Para completar a recorrência, os casos base são (n‐k 0) = 1 e
+  (m 1) = m, assim como (k k) = 1
+
+    · Código: binomial.c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

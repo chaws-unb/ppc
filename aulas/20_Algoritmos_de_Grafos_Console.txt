@@ -1,0 +1,198 @@
+
+                      [1mAlgoritmos de Grafos[0m
+
+
+[4mCaminhos[24m [4mmais[24m [4mcurtos[0m
+
+  →  O problema de se determinar o caminho mais curto em um grafo
+  não ponderado já foi discutido anteriormente, e é resolvido com
+  uma travessia por extensão
+
+  → Contudo, o BFS não resolve o problema para grafos ponderados
+
+  →  Serão  apresentados  dois  algoritmos  para  este problema a
+  seguir
+
+[4mAlgoritmo[24m [4mde[24m [4mDijkstra[0m
+
+  → Este algoritmo determina, para um dado vértice v,  o  caminho
+  mais  curto de v até qualquer outro vértice do grafo, incluse o
+  vértice destino d
+
+  → A ideia básica do algoritmo  é  semelhante  ao  algoritmo  de
+  Prim:  a  cada  iteração,  será  adicionado  um único vértice à
+  árvore de vértices na qual sabemos o caminho mais curto para v
+
+  → Será mantido o registro do melhor caminho até o momento  para
+  todos  os vértices fora da árvore, e então estes vértices serão
+  inseridos em ordem crescente de custo
+
+  → Embora o algoritmo de Prim (árvore  mínima  de  espalhamento)
+  leve  em  consideração apenas o grau da aresta, no algoritmo de
+  Dijkstra  (caminho  mínimo)  é  função  do  nova  aresta  e  da
+  distância até o início da árvore de vértices
+
+  → Isto dito, a implementação é bastante semelhante nos dois ca‐
+  sos
+
+    · Código: dijkstra.c
+
+  → Este algoritmo, contudo, funciona apenas para grafos que  não
+  contém  custos  negativos  (embora seja difícil encontrá‐los na
+  prática)
+
+  → O algoritmo de Floyd funciona em tais casos, a menos que  ex‐
+  istam  ciclos  de  custo negativo, o que distorce o problema do
+  caminho minímo (ficar girando em tal ciclo diminuiria  o  custo
+  indefinidamente)
+
+[4mCaminho[24m [4mMínimo[24m [4mem[24m [4mtodos[24m [4mos[24m [4mpares[0m
+
+  →  Situações  práticas  podem  exigir o conhecimento do caminho
+  mais curto entre todos os pares de um grafo (como o melhor  lo‐
+  cal para a instalação de um comércio, determinar o "centro" e o
+  "diâmetro" de um grafo, etc)
+
+  → Embora tal problema possa ser solucionado aplicando  o  algo‐
+  ritmo  de  Dijkstra em cada um dos n vértices do grafo, o algo‐
+  ritmo de Floyd é o mais apropriado para tal situação
+
+  → Tal algoritmo se adapta melhor para  a  representação  de  um
+  grafo como uma matriz de adjacências, onde serão armazenadas as
+  arestas/pesos entre os nós do grafo
+
+  → Para representar as arestas não presentes, em geral  se  uti‐
+  liza  o número zero para grafos não ponderados (sendo o valor 1
+  o indicativo da presença da aresta)
+
+  → Tal representação não é adequada para grafos ponderados,  uma
+  vez  que  o valor zero significaria uma travessia "livre" entre
+  os dois nós. Uma alternativa é utilizar o maior  valor  inteiro
+  (MAXINT) como sentinela
+
+    · Código: floyd.c, funções initialize() e read()
+
+  →  O algoritmo tem início numerando os vértices do grafo de 1 a
+  n, utilizando estes números como critério de ordenação,  e  não
+  como rótulos
+
+  →   Serão então realizadas n iterações, onde a k‐ésima iteração
+  permite apenas os k primeiros  vértices  como  passos  interme‐
+  diários entre cada par de vértices
+
+  →   Na  etapa  k = 0, a matriz resultante é a própria matriz de
+  adjacências
+
+  → Em cada etapa adicional, a adição do k‐ésimo vértice pode at‐
+  ualizar  o  caminho  mínimo,  através  da  expressão W[i,j]^k =
+  min(W[W[i,j]^k, W[i,k]^(k‐1) + W[k,j]^(k‐1))
+
+    · Código: floyd.c
+
+  → Observe que o algoritmo não preserva o caminho mínimo, apenas
+  seu custo
+
+  →  Outra  aplicação  do  algoritmo  de  Floyd  é  o  cálculo do
+  fechamento transitivo de um grafo direcionado, isto é, determi‐
+  nar se um vértice é ou não alcançável a partir de um determina‐
+  do nó
+
+  → Qualquer nó que tenha peso diferente de MAXINT  ao  final  do
+  algoritmo é atingível
+
+[4mFluxos[24m [4mde[24m [4mRede[24m [4me[24m [4mPareamento[24m [4mBipartido[0m
+
+  →  Qualquer  grafo ponderado pode ser visualizado como uma rede
+  de canos, onde o peso da aresta (i,j) determina a capacidade do
+  cano que liga os nós i e  j
+
+  →  Para  um grafo ponderado G e dois vértices s e t, o problema
+  do fluxo de rede consiste em determinar o fluxo máximo que pode
+  ser  enviado de s para t, respeitando as capacidades máximas de
+  cada cano
+
+  → Um problema relacionado é o do pareamento bipartido
+
+  → Um pareamento em um grafo G = (V,E) é um subconjunto E’ de  E
+  tal que duas arestas em E’ não compartilham um mesmo vértice
+
+  →  Um  pareamento  associa  pares  de vértices de modo que cada
+  vértice pertença a apenas um par
+
+  → Um grafo é bipartido ou "bicolorível" se  os  vértices  podem
+  ser divididos em dois grupos L e R de modo que todas as arestas
+  de G tem um vértice em L e um vértice em R
+
+  → Exemplos de grafos que são bipartidos  na  prática:  o  grafo
+  onde uns vértices representam trabalhos a serem feitos e outros
+  as pessoas que podem realizá‐los; ou o grafo onde  os  vértices
+  são rapazes e moças e as arestas são os possíveis relacionamen‐
+  tos. Em tais grafos, um pareamento significa  uma  distribuição
+  de tarefas ou casamentos
+
+  →  O maior pareamento bipartido pode ser determinado através do
+  fluxo de rede
+
+  → Basta criar um nó fonte s que é conectado a cada vértice de L
+  por  uma  aresta  de  peso  1, e um nó sifão t conectado a cada
+  vértice de R por uma aresta de peso 1
+
+  → Depois, basta atribuir peso 1 a todas as arestas de G. Agora,
+  o fluxo máximo de s a t determinar o maior pareamento em G
+
+  →  O  fluxo  pode  ser  obtido  através  da escolha das arestas
+  pareadas e as suas conexões da fonte para o sifão
+
+  → O algoritmo mais simples de implementar para  o  problema  de
+  fluxo de rede é o de Ford‐Fulkerson
+
+  →  Neste algoritmo, cada aresta mantém o registro da capacidade
+  de fluxo que está correndo atualmente sobre ela assim como  sua
+  capacidade residual
+
+  → Em seguida, se procura qualquer caminho da fonte ao sifão que
+  aumenta o fluxo total e o utiliza para ampliar o total
+
+  → O algoritmo termina quando não existir nenhum caminho que am‐
+  plie o total
+
+    · Código: netflow.c
+
+  →  Uma travessia bfs pode ser utilizada para determinar os cam‐
+  inhos que ampliam o fluxo, sendo permitido apenas  caminhar  em
+  arestas que tenham capacidade remanescente
+
+  →  A quantidade máxima que pode ser transferida é limitada pela
+  menor capacidade residual (assim com o tráfego é limitado  pela
+  ponto de maior congestionamento)
+
+  →  Enviar  uma  unidade de fluxo adicional de através da aresta
+  direcionada (i,j) reduz sua capacidade residual mas  aumenta  a
+  capacidade residual de (j,i)
+
+  →  Deste  modo,  a  busca pela ampliação do fluxo deve levar em
+  consideração ambos os sentidos das arestas
+
+  → A inicialização de um grafo de fluxo  requer  a  criação  das
+  arestas  direcionadas  (i,j) e (j,i), com fluxos todos iguais a
+  zero, e o fluxo residual de (i,j) sendo igual ao seu peso,  en‐
+  quanto que o resíduo inicial de (j,i) é igual a zero
+
+  →  Redes  de  fluxo são uma técnica de algoritmos avançada, que
+  exige experiência para identificar quando um problema pode  ser
+  resolvido por ela ou não
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

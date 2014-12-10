@@ -1,0 +1,132 @@
+
+                       [1mTeoria dos Números[0m
+
+
+[4mImportância[24m [4mda[24m [4mTeoria[24m [4mdos[24m [4mNúmeros[0m
+
+  → A Teoria dos Números pode ser considerada uma das mais inter‐
+  essantes áreas da Matemática
+
+  → A prova a existência de infinitos números primos e  o  Último
+  Teorema  de  Fermat  são  dois resultados famosos desta área de
+  conhecimento
+
+  → É uma área importante para o treinamento do pensamento lógico
+  e formal
+
+  → O foco desta área é o estudo das propriedades dos números in‐
+  teiros
+
+[4mNúmeros[24m [4mprimos[0m
+
+  → Um número primo é um inteiro p > 1 que é divisível apenas por
+  1 e por si mesmo
+
+  →  Os  primeiros números primos são 2, 3, 5, 7, 11, 13, 17, 19,
+  23, 27, ...
+
+  → A importância dos números primos é devida ao  Teorema  Funda‐
+  mental  da  Aritmética, que afirma que todo número inteiro ou é
+  primo ou pode ser escrito, de maneira única,  como  produto  de
+  primos
+
+  →  Os  números  primos cujo produto resulta em n formam a fato‐
+  ração prima de n. Por exemplo, 105 = 3x5x7 e 32 = 2x2x2x2x2
+
+  → Na faotação prima de um número um mesmo primo p pode aparecer
+  repetidas vezes
+
+  → O primo p é um fator de n se aparecer na fatoração prima de n
+
+  → Os números que não são primos são denominados números compos‐
+  tos
+
+  → Para determinar se x é ou não primo, o algoritmo mais simples
+  consiste em elencar os possíveis divisores do número (que devem
+  ser menores ou iguais a raiz quadrada de n) e verificar se  al‐
+  gum destas candidatos divide x
+
+  →  Computar  a fatoração prima de n envolve também a eliminação
+  das k ocorrências de um primo p
+
+    · Código: primes.c
+
+  → A prova de que há infinitos primos foi proposta por  Euclides
+  e é feita por contradição
+
+  →  Há, aproximadamente, x/ln x primos que são menores ou iguais
+  a x
+
+[4mDivisibilidade[0m
+
+  → A Teoria dos Número pode ser vista como o estudo  da  divisi‐
+  bilidade dos inteiros
+
+  →  Um  inteiro b divide o inteiro a (cuja notação é b|a) se a =
+  bk para algum k inteiro. Também pode‐se dizer que b é um  divi‐
+  sor de a  ou que a é um múltiplo de b
+
+  → O menor divisor natural de um inteiro não‐nulo é 1
+
+  →  Para  determinar  o  conjunto  dos  divisores  de um número,
+  primeiro é necessário determinar a fatoração prima desta número
+
+  → Cada divisor é o produto dos elementos de um subconjunto  dos
+  divisores de n
+
+  →  Tais divisores podem ser encontrados por backtracing, e deve
+  se tomar cuidado com possíveis fatores duplicados
+
+[4mMaior[24m [4mDivisor[24m [4mComum[0m
+
+  → O menor divisor comum entre a e b é sempre 1
+
+  → O maior divisor comum entre a e b é o maior  divisor  inteiro
+  comum de a e b. Anota‐se d = MDC(a, b)
+
+  → Se MDC(a, b) = 1, dizemos que a e b são co‐primos
+
+  →  Um  forma ineficiente de se computar o MDC é listar todos os
+  divisores de a, todos de b, determinar a interseção e elencar o
+  maior elemento
+
+  → O algoritmo de Euclides, considerado o primeiro algoritmo in‐
+  teressante da história, é deveras mais eficiente, e  se  baseia
+  em dois fatos:
+
+    · se b|a, MDC(a, b) = b
+
+    ·  se b não divide a, a = bk + r, com 0 <= r < b, e MDC(a, b)
+    = MDC(b, r)
+
+  → A complexidade deste algoritmo é O(log n)
+
+  → O mesmo algoritmo pode ser utilizado para terminar inteiros x
+  e y tais que
+
+    · ax + by = MDC(a, b)
+
+  →  Basta lembrar que MDC(a,b) = MDC(b,a’), com a’ = a ‐ b[a/b].
+  Daí, assuma por recursão que são conhecidos x’ e y’ tais qu
+
+    · bx’ + a’y’ = MDC(a, b)
+
+  → Daí é só substituir o valor de a’ pela definição  anterior  e
+  rearranjar os termos para obter x e y
+
+  → O caso base deste algoritmo é ax1 + 0x0 = MDC(a, 0)
+
+    · Código: gcd.c
+
+[4mMínimo[24m [4mMúltiplo[24m [4mComum[0m
+
+  →  É o menor inteiro que é divisível simultaneamente por a e b.
+  Anota‐se MMC(a, b) = m
+
+  → Ocorre em problemas de se determinar  a  periodicidade  comum
+  entre eventos de periodicidades distintas
+
+  → Pode‐se mostrar que MMC(a,b) = ab/MDC(a,b)
+
+
+

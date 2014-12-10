@@ -1,0 +1,132 @@
+
+                   [1mEntrada e saída de strings[0m
+
+
+[4mLeitura[24m [4mde[24m [4mstrings[24m [4mda[24m [4mentrada[24m [4mpadrão[0m
+
+  →  Há  diversas maneiras de se ler strings do terminal (entrada
+  padrão)
+
+  → Uma maneira consiste em ler cada caractere individualmente  e
+  processar  um por vez (por exemplo, utilizar a função getchar()
+  em C)
+
+  → Extrair  tokens  formatados  através  da  função  scanf(),  e
+  processá‐los a medida que aparecem
+
+  →  Ler  linha  a linha, e processar a linha extraindo as infor‐
+  mações necessárias através de uma das técnicas anteriores
+
+  → Exemplos de leitura, onde a entrada tem o  seguinte  formato:
+  ’Prazo:’,   seguido   de  um  espaço  e  uma  data  no  formato
+  ’dd/mm/aaaa’:
+    · char_a_char.c
+    · char_a_char.cpp
+    · tokens.c
+    · tokens.cpp
+    · line.c
+    · line.cpp
+
+  → Veja a solução completa do problema em war.c  e  verifique  o
+  método de input utilizado
+
+[4mTestes[0m
+
+  → Os juizes eletrônicos não retornam informações sobre os erros
+  nas soluções, o que dificulta a depuração
+
+  → Logo, é importante revisar o código  antes  da  submissão,  e
+  também eliminar warnings e problemas na compilação
+
+  → Testes que podem (e devem) ser realizados incluem:
+    · testar as entradas e saídas que são fornecidas no problema.
+    Uma dica é escrevê‐las em arquivos, utilizar o cat para  ali‐
+    mentar o programa e diff para verificar o resultado
+
+    ·  testar inputs inválidos, caso o problema os descreva. Lem‐
+    bre que não deve ser feita nenhuma consideração sobre  a  or‐
+    dem,  limite  e  sinalização de inputs que não foram escritas
+    explicitamente
+
+    · testar as condições de contorno: muitos erros advém de  er‐
+    ros de índices de vetores (extrapolar por um ou índices nega‐
+    tivos) e também dos casos extremos dos inputs (valores nulos,
+    negativos,  maiores  do  que  uma  variável inteira comporta,
+    etc). Identifique e trate tais casos
+
+    · monte pares de entradas e saídas válidas e os inclua em seu
+    arquivo  de  teste. Tome cuidado dobrado para não criar pares
+    inválidos e levar a resolução do problema para um caminho er‐
+    rado
+
+    ·  teste  exemplo  com grandes entradas. Monte exemplos com o
+    máximo de elementos ou tamanho descritos  no  problema,  para
+    verificar se o programa não falha nestes casos
+
+[4mBugs[24m [4me[24m [4mDepuração[0m
+
+  →  A  depuração pode ser realizada durante a competição através
+  das ferramentas disponíveis, ou mediante o uso  de  impressões.
+  Contudo, o ideal é evitar situações que levem aos bugs
+
+  → Estratégias para evitar bugs incluem:
+
+    ·  Conhecer  bem o depurador, seus comando e opções. Em quase
+    todas as distribuições GNU/Linux, o gdb está disponível. Lem‐
+    bre‐se de compilar o código com a opção ‐g
+
+    ·  Escrever funções/operadores para a impressão de estruturas
+    e dados compostos. A visualização destes elementos pode apon‐
+    tar onde estão possíveis falhas
+
+    · Testar as invariantes do problema ou algoritmo. Uma invari‐
+    ante é propriedade que deve ser sempre  verdadeira,  indepen‐
+    dentemente das entradas.  As funções de ranqueamento das car‐
+    tas em war.c formam invariantes, no sentido que devem ser mu‐
+    tuamente inversas
+
+    · Inspecionar o código. Uma leitura cuidadosa de todo o códi‐
+    go fonte pode revelar bugs, umas vez  que  eles  costumam  se
+    manifestar  em  trechos  de  código de difícil leitura ou en‐
+    tendimento
+
+    · Tornar claro o sentido das mensagens de depuração. Mensagem
+    não  descritivas,  como  sequências  numéricas, tendem a com‐
+    plicar o entendimento do fluxo da execução e as falhas
+
+    · Criar arrays com um pouco mais de espaço do que o  estrita‐
+    mente necessário.  Isto permite o uso de sentinelas, e também
+    pode evitar o erro de índice inválido ou fora do intervalo
+
+    · Determinar se o bug de fato é um bug. Alguns comportamentos
+    anormais  do programa podem ser consequências de propriedades
+    inerentes às entradas, e não necessariamente um erro
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

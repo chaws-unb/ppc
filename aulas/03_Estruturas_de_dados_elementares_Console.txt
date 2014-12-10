@@ -1,0 +1,264 @@
+
+                 [1mEstruturas de dados elementares[0m
+
+
+[4mEstruturas[24m [4mde[24m [4mdados[24m [4mimportantes[0m
+
+  →  Pilhas,  filas, dicionários, filas de prioridade e conjuntos
+  são estruturas de dados fundamentais em programação
+
+  → C++ e Java oferecem, em suas  bibliotecas  padrão,  implemen‐
+  tações destas estruturas
+
+  → Contudo, o conhecimento da implementações destas estruturas e
+  suas operações básicas são  de  grande  valia,  por  conta  das
+  ideias e técnicas inerentes a estas implementações
+
+[4mPilhas[0m
+
+  → São estruturas do tipo LIFO (last in, first out)
+
+  → As operações abstratas de uma pilha incluem
+
+    · push(x, s): Insere um item x na pilha
+
+    · pop(s): Retorna o elemento do topo da pilha
+
+    · initialize(s): Cria uma pilha vazia
+
+    · full(s): Retorna verdadeiro caso a pilha esteja cheia*
+
+    · empty(s): Retorna verdadeiro caso a pilha esteja vazia
+
+  * pode‐se considerar que o método full() revela detalhes da im‐
+  plementação e, assim, não pode fazer parte da interface abstra‐
+  ta de uma pilha
+
+[4mImplementações[24m [4mde[24m [4mpilhas[0m
+
+  →  Há  duas formas básicas de se implementar uma pilha: com ve‐
+  tores e com listas encadeadas
+
+  → Com vetores, é necessário manter  o  registro  do  índice  do
+  topo.  Além  disso,  a pilha passa a ter uma capacidade máxima,
+  igual ao tamanho do vetor
+
+  → A segunda forma é utilizar listas encadeadas.  O  tamanho  da
+  pilha  fica restrito apenas a quantidade de memória disponível,
+  porém a implementação utiliza mais espaço em memória do  que  a
+  anterior
+
+[4mFilas[0m
+
+  → Filas são estruturas FIFO (first in, first out)
+
+  →  Exemplos  práticos  de  filas são filas em bancos e decks de
+  cartas
+
+  → Operações abstratas de uma fila incluem:
+
+    · enqueue(x, q): insere o elemento x na fila q
+
+    · dequeue(q): retorna (e remove) o elemento do início de q
+
+    · initialize(q): Cria uma fila vazia
+
+    · full(q): Retorna verdadeiro caso a fila esteja cheia
+
+    · empty(q): Retorna verdadeiro caso a fila esteja vazia
+
+[4mImplementações[24m [4mde[24m [4mfilas[0m
+
+  → Filas são mais difíceis de implementar do que pilhas
+
+  → Uma implementação possível é utilizar um array circular, man‐
+  tendo o registro do início e fim da fila
+
+  → Exemplo da implementação com array circular:
+    · queue.h
+    · queue.c
+
+  →  Contudo,  a  implementação  utilizando listas duplamente en‐
+  cadeadas é mais fácil do que a anterior baseada em arrays
+
+[4mDicionários[0m
+
+  → Dicionários são estruturas que  permitem  recuperar  dados  a
+  partir do conteúdo, e não da posição dos dados em memória
+
+  → Operações básicas de dicionários incluem:
+
+    · insert(x, d): insere o elemento x no dicionário d
+
+    · delete(x, d): remove o elemento x de d
+
+    · search(k, d): retorna o elemento de d com a chave k, se ex‐
+    istir
+
+[4mImplementações[24m [4mde[24m [4mdicionários[0m
+
+  → Existem muitas formas de se implementar um dicionário: listas
+  encadeadas  (ordenadas  ou  não),  vetores  (ordenados ou não),
+  árvores AVL e red‐black, hashing, etc
+
+  → O importante  é  balancear  o  custo  de  execução  das  três
+  operações,  sendo  esta  decisão baseada no contexto onde o di‐
+  cionário deverá ser utilizado
+
+  → O quanto o dicionário irá variar durante a execução pode aux‐
+  iliar nesta decisão
+
+[4mTipos[24m [4mde[24m [4mdicionários[0m
+
+  →  Dicionários  estáticos não variam depois de construídos. As‐
+  sim, tem suporte à busca, mas não à inserção e remoção
+
+  → A implementação mais apropriada para dicionários estáticos  é
+  através de vetores
+
+  →  Se  o  número de elementos for maior do que 100, vale a pena
+  considerar a possibilidade de ordenar o vetor e utilizar buscas
+  binárias. Para valores inferiores, a busca linear é suficiente
+
+  →  Dicionários  semi‐dinâmicos  suportam tanto a busca quanto a
+  inserção, mas não a remoção
+
+  → Se o número máximo de elementos a serem inseridos é  conheci‐
+  do,  a implementação baseada em vetores é suficiente; caso con‐
+  trário, é mais adequado o uso de listas encadeadas
+
+  → Tabelas hash constituem uma excelente alternativa  para  con‐
+  struir dicionários, principalmente se não há suporte à remoção
+
+  →  Dicionários  dinâmicos  suportam  todas  as  três  operações
+  básicas
+
+  → Tabelas hash também podem ser utilizadas  neste  caso,  desde
+  que  a resolução de colisões seja feita por encadeamento, e não
+  por endereçamento aberto
+
+  → No encadeamento cada entrada da  tabela  é  associada  a  uma
+  lista  encadeada, e elementos que colidem são inseridos/removi‐
+  dos destas listas
+
+[4mFilas[24m [4mcom[24m [4mprioridades[0m
+
+  → Filas com prioridades são filas onde  os  elementos  tem  uma
+  relação  de  prioridade  que determina o próximo elemento a ser
+  removido
+
+  → Operações sobre filas com prioridades incluem:
+
+    · insert(x, p): insere o elemento x na fila com prioridades p
+
+    · maximum(p): retorna o elemento com maior prioridade da fila
+
+    · extractMax(p): extrai e remove o elemento com maior priori‐
+    dade
+
+  →  A  implementação  de  uma fila com prioridades deve levar em
+  consideração o custo/benefício entre a inserção e a remoção  de
+  seus elementos
+
+[4mConjuntos[0m
+
+  → Conjuntos (tecnicamente, subconjuntos) são coleções não orde‐
+  nadas de elementos escolhidos de um conjunto universal U
+
+  → Operações básicas sobre conjuntos incluem:
+
+    · member(x, S): retorna verdadeiro se x pertenca ao  conjunto
+    S
+
+    · union(A, B): constrói o conjunto união AUB
+
+    · intersection(A, B): constrói a interseção de A e B
+
+    · insert(x, S): insere x no conjunto S
+
+    · delete(x, S): remove x do conjunto S
+
+[4mImplementações[24m [4mde[24m [4mconjuntos[0m
+
+  →  Conjuntos  são  implementados,  em  geral,  a  partir de di‐
+  cionários, sendo que dicionários ordenados facilitam  a  imple‐
+  mentação das operações de união e interseção
+
+  →  Se  o  conjunto  provém  de  um  conjunto universo pequeno e
+  imutável, vetores podem ser uma boa escolha  para  a  implemen‐
+  tação do conjunto
+
+  →  Dependendo do número de elementos de U, o subconjunto S pode
+  ser implementado como um vetor de bits
+
+[4mEstruturas[24m [4mde[24m [4mdados[24m [4mem[24m [4mC++[0m
+
+  → A biblioteca padrão de templates (STL) do C++ provê a  imple‐
+  mentação  das estruturas citadas, de forma independente do tipo
+  de dado armazenado
+
+  → O cabeçalho padrão para esta biblioteca é o ’stl’, sendo  que
+  há cabeçalhos específicos para cada estrutura
+
+  →  Para  pilhas,  são  definidos  os métodos S.push(), S.top(),
+  S.pop() e S.empty(), sendo que top() consulta, mas não  remove,
+  o elemento do topo da pilha, enquanto pop() remove, mas não re‐
+  torna, o topo
+
+  → Para filas, estão disponíveis os métodos Q.front(), Q.back(),
+  Q.push(), Q.pop() e Q.empty()
+
+  →  Os  dicionários  suportam  os  métodos H.erase(), H.find() e
+  H.insert(), sendo os hash_map uma das variantes disponíveis
+
+  → Filas com prioridades estão  em  <priority_queue>  e  tem  os
+  métodos Q.top(), Q.push(), Q.pop() e Q.empty()
+
+  → Os conjuntos são representados por estruturas associativas, e
+  suportam operações set_union e set_intersection dentro da  bib‐
+  lioteca de algoritmos
+
+[4mExemplo:[24m [4mGoing[24m [4mto[24m [4mWar++[0m
+
+  → Descrição do problema: pg 34 do livro texto
+
+  → Leia o problema atentamente: separe o contexto dos dados rel‐
+  evantes. Uma estratégia é fazer uma leitura inicial do problema
+  e em, seguida, uma leitura detalhada
+
+  →  Não  assuma nada do que não foi descrito no texto: ordem dos
+  dados, limites, propriedades, etc
+
+  → Não se preocupe com otimizações a menos que seja estritamente
+  necessário, isto é, caso receba um TLE do juiz
+
+  → Como um deck pode ser representado eficientemente?
+
+    · Filas (tirar do topo e inserir no final)
+
+    ·  As cartas podem ser representadas por pares de caracteres,
+    ou índices numéricos (através de uma função que mapeia  valor
+    e  suite  em  um  número único.  Veja os métodos rank_card(),
+    suit() e value() em war.c)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
